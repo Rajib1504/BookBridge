@@ -1,10 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* Import Google Fonts first */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@400;700&display=swap'); */
+
+
 
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
 
 
-@theme {
-    --font-Gilda: "Gilda Display", serif;
-    --font-Inter: "Inter", sans-serif;
+
+/* Define custom colors and fonts using hex values */
+@layer base {
+  :root {
+    /* Primary and Secondary Colors */
+    --custom-secondary: #f4f4ec;
+
+    /* Font Families */
+    --font-nunito: "Nunito", sans-serif;
+    --font-libre: "Libre Baskerville", serif;
   }
+}
