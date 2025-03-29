@@ -27,6 +27,7 @@ const BestSellerCard = () => {
             </figure>
             <div className="card-body gap-0 space-y-2 p-4 items-start text-center">
                 <div className='flex items-center gap-x-2'>
+                    <p></p>
                     <Rating
                         style={{ maxWidth: 100 }}
                         value={3}
