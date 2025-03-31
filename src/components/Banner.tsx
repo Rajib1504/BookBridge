@@ -11,7 +11,7 @@ import { Slide, Zoom } from 'react-awesome-reveal';
 import { IoPricetagsOutline } from 'react-icons/io5';
 const Banner = () => {
     return (
-        <>
+        <div className='mt-16'>
             <Swiper
                 pagination={{
                     dynamicBullets: true,
@@ -113,7 +113,7 @@ const Banner = () => {
 
             </Swiper>
 
-        </>
+        </div>
     );
 };
 
