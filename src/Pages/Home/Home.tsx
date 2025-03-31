@@ -1,9 +1,16 @@
+import Banner from "../../components/Banner";
+import BestSeller from "../../components/BestSeller";
+import Discount from "../../components/Discount";
+import ShopByCategory from "../../Components/ShopByCategory";
 
 
 const Home = () => {
       return (
             <div>
-                  Home
+                <Banner/>
+                <BestSeller/>
+                <Discount/>
+                <ShopByCategory/>
             </div>
       );
 };
