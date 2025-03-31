@@ -1,4 +1,5 @@
-import BestSellerCard from "./BestSellerCard";
+import React from "react";
+// import BestSellerCard from "./BestSellerCard";
 
 const BestSeller = () => {
     return (
@@ -14,10 +15,10 @@ const BestSeller = () => {
                 <div className="tab-content bg-base-100 py-10">
                     <div className='grid place-items-center sm:place-items-baseline grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-30'>
                         {/* Card will be placed Here */}
+                        {/* <BestSellerCard></BestSellerCard>
                         <BestSellerCard></BestSellerCard>
                         <BestSellerCard></BestSellerCard>
-                        <BestSellerCard></BestSellerCard>
-                        <BestSellerCard></BestSellerCard>
+                        <BestSellerCard></BestSellerCard> */}
                     </div>
 
                 </div>
@@ -27,10 +28,10 @@ const BestSeller = () => {
 
                     <div className='grid place-items-center sm:place-items-baseline grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-30'>
                         {/* Card will be placed Here */}
+                        {/* <BestSellerCard></BestSellerCard>
                         <BestSellerCard></BestSellerCard>
                         <BestSellerCard></BestSellerCard>
-                        <BestSellerCard></BestSellerCard>
-                        <BestSellerCard></BestSellerCard>
+                        <BestSellerCard></BestSellerCard> */}
                     </div>
                 </div>
 
@@ -38,7 +39,7 @@ const BestSeller = () => {
                 <div className="tab-content bg-base-100 py-10">
 
 
-                <BestSellerCard></BestSellerCard>
+                {/* <BestSellerCard></BestSellerCard> */}
                 </div>
 
                 <input type="radio" name="my_tabs_2" className="tab" aria-label="Drawing" />
