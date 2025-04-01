@@ -1,6 +1,7 @@
-import Banner from "../../components/Banner";
-import BestSeller from "../../components/BestSeller";
-import Discount from "../../components/Discount";
+
+import Banner from "../../Components/Banner";
+import BestSeller from "../../Components/BestSeller";
+import Discount from "../../Components/Discount";
 import ShopByCategory from "../../Components/ShopByCategory";
 
 
@@ -10,7 +11,7 @@ const Home = () => {
                 <Banner/>
                 <BestSeller/>
                 <Discount/>
-                
+                <ShopByCategory/>
             </div>
       );
 };
