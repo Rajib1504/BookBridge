@@ -13,6 +13,7 @@ const Home = () => {
                 <BestSeller/>
                 <Discount/>
                 <ShopByCategory/>
+                <TopAuther/>
                
             </div>
       );
