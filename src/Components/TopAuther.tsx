@@ -25,6 +25,7 @@ const TopAuther = () => {
       </aside>
     </div>
   );
+
 };
 
 export default TopAuther;
