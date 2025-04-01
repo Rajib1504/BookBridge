@@ -1,4 +1,3 @@
-import React from "react";
 import BestSellerCard from "./BestSellerCard";
 
 const BestSeller = () => {
