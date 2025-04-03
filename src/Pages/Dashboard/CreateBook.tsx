@@ -100,7 +100,7 @@ export default function CreateBook() {
   const availability = watch("availability", "Exchange");
 
   return (
-    <div className="max-w-2xl mx-auto p-6 mt-20 bg-white shadow-lg rounded-lg">
+    <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-bold mb-4">
         Post a Book for Rent or Exchange
       </h2>

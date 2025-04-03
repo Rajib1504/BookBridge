@@ -11,7 +11,6 @@ import MyBooks from "../Pages/User/MyBooks";
 import MyHistory from "../Pages/User/MyHistory";
 import Payments from "../Pages/User/Payments";
 
-
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -21,13 +20,7 @@ const Router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-      {
-        path: "/dashboard/user/my-books/create",
-        element: <CreateBook />,
-      },
     ],
-
-    
   },
   {
     path: "/dashboard",
@@ -39,22 +32,26 @@ const Router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: <MyProfile></MyProfile>
+        element: <MyProfile></MyProfile>,
+      },
+      {
+        path: "user/my-books/create",
+        element: <CreateBook />,
       },
       {
         path: "my-book",
-        element: <MyBooks></MyBooks>
+        element: <MyBooks></MyBooks>,
       },
       {
         path: "payments",
-        element: <Payments></Payments>
+        element: <Payments></Payments>,
       },
       {
         path: "history",
-        element: <MyHistory></MyHistory>
+        element: <MyHistory></MyHistory>,
       },
-    ]
-  }
+    ],
+  },
 ]);
 
 export default Router;
