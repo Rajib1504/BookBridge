@@ -21,7 +21,7 @@ const Discount = () => {
           </figure>
         </div>
         {/* text container::: second container */}
-        <div className="flex flex-col items-start lg:items-center justify-center col-span-3 border">
+        <div className="flex flex-col items-start lg:items-center justify-center col-span-3">
           <h4 className="uppercase text-xs tracking-widest font-bold text-[#d62928]">
             Weekend Promotions
           </h4>
@@ -42,7 +42,7 @@ const Discount = () => {
         </div>
         {/* discount image container::: third container  */}
         <div
-          className="lg:col-span-2 col-span-3 bg-cover bg-center bg-no-repeat border"
+          className="lg:col-span-2 col-span-3 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url(${lineImg})`,
           }}
