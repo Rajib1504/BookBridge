@@ -11,7 +11,7 @@ const UserLayout = () => {
                 <div>
                     <SideNavBar></SideNavBar>
                 </div>
-                <div className='flex-1 p-8'>
+                <div className='flex-1 p-8 lg:ml-64'>
                     <Outlet></Outlet>
                 </div>
             </div>

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const UserNavBar = () => {
     return (
-        <div className="bg-base-100 shadow-sm">
+        <div className="bg-base-100 shadow-sm sticky top-0 z-50">
             <div className="navbar p-4">
                 <div className="flex-1">
                     <Link to={"/"} className="btn btn-ghost text-xl font-Gilda">BookBridge</Link>
