@@ -12,7 +12,7 @@ const Login = () => {
             </div>
 
             {/* Login Form */}
-            <aside className="w-full md:w-1/3 mx-auto flex-col  flex justify-center ">
+            <aside className="w-full  p-4  md:w-1/3 mx-auto flex-col  flex justify-center ">
             <h1 className="text-white mb-6 font-Gilda font-bold text-3xl md:text-5xl text-center">Log in</h1>
               <form className="flex flex-col gap-6 w-full max-w-md">
                 <input
