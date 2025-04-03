@@ -2,6 +2,7 @@ import React, { JSX } from 'react';
 import { LiaBookSolid } from 'react-icons/lia';
 import { MdOutlinePayment, MdOutlineSpaceDashboard } from 'react-icons/md';
 import { RiFileUserLine, RiHistoryFill } from 'react-icons/ri';
+import { TbLayoutSidebarLeftCollapse } from 'react-icons/tb';
 import { NavLink } from 'react-router-dom';
 
 const SideNavBar = () => {
@@ -16,13 +17,13 @@ const SideNavBar = () => {
         </>
 
     return (
-        <div>
+        <div className='relative z-50'>
             <div className="drawer lg:drawer-open font-Inter">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
+                <div className="drawer-content flex flex-col items-center justify-center p-2">
                     {/* Page content here */}
-                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
-                        Open drawer
+                    <label htmlFor="my-drawer-2" className="btn btn-soft btn-secondary btn-lg btn-square drawer-button lg:hidden">
+                        <TbLayoutSidebarLeftCollapse className='text-4xl'></TbLayoutSidebarLeftCollapse>
                     </label>
                 </div>
                 <div className="drawer-side border-2 border-base-200 shadow-[6px_1px_8px_-9px_rgba(0,0,0,0.2)]">
