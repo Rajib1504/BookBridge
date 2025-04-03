@@ -5,7 +5,7 @@ import { FaTwitter } from "react-icons/fa";
 const Login = () => {
       return (
             <section className="flex justify-center items-center min-h-screen flex-col">
-            <div className="mt-20 flex flex-wrap justify-between items-center w-11/12 mx-auto bg-[#f4d0f2a2] backdrop-blur-lg rounded-lg drop-shadow-2xl ">
+            <div className="mt-20 flex flex-wrap justify-between items-center w-11/12 mx-auto bg-[#FBE9DF] backdrop-blur-lg rounded-lg drop-shadow-2xl ">
             {/* Login Image */}
             <div className="w-full md:w-1/2 flex justify-center">
               <img src={loginimg} alt="Login" className="rounded-lg rounded-r-none h-1/2" />
@@ -13,19 +13,19 @@ const Login = () => {
 
             {/* Login Form */}
             <aside className="w-full  p-4  md:w-1/3 mx-auto flex-col  flex justify-center ">
-            <h1 className="text-white mb-6 font-Gilda font-bold text-3xl md:text-5xl text-center">Log in</h1>
+            <h1 className=" mb-6 font-Gilda font-bold text-3xl md:text-5xl text-center">Log in</h1>
               <form className="flex flex-col gap-6 w-full max-w-md">
                 <input
                   type="text"
                   placeholder="Email Address"
-                  className=" font-Inter px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  className=" font-Inter px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring focus:ring-gray-500"
                 />
                 <input
                   type="password"
                   placeholder="Password"
-                  className=" font-Inter px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  className=" font-Inter px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring focus:ring-gray-500"
                 />
-                <button className="font-Inter mt-3  bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600 transition">
+                <button className="font-Inter mt-3  bg-[#FFB237] text-white py-2 rounded-lg hover:bg-[#d62928]  transition">
                  Sign in
                 </button>
               </form>
