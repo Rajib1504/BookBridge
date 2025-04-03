@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const UserNavBar = () => {
     return (
         <div className="bg-base-100 shadow-sm">
             <div className="navbar p-4">
                 <div className="flex-1">
-                    <a className="btn btn-ghost text-xl font-Gilda">BookBridge</a>
+                    <Link to={"/"} className="btn btn-ghost text-xl font-Gilda">BookBridge</Link>
                 </div>
                 <div className="flex gap-2">
                     <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
