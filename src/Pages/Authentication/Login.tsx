@@ -5,7 +5,7 @@ import { FaTwitter } from "react-icons/fa";
 const Login = () => {
       return (
             <section className="flex justify-center items-center min-h-screen flex-col">
-            <div className="mt-20 flex flex-wrap justify-between items-center w-11/12 mx-auto bg-[#FBE9DF] backdrop-blur-lg rounded-lg drop-shadow-2xl ">
+            <div className="mt-20 flex flex-wrap justify-between items-center w-11/12 mx-auto   rounded-lg  ">
             {/* Login Image */}
             <div className="w-full md:w-1/2 flex justify-center">
               <img src={loginimg} alt="Login" className="rounded-lg rounded-r-none h-1/2" />
