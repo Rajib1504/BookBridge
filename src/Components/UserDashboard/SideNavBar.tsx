@@ -1,4 +1,4 @@
-import React, { JSX } from "react";
+import { JSX } from "react";
 import { LiaBookSolid } from "react-icons/lia";
 import {
   MdOutlineCreateNewFolder,
@@ -52,7 +52,7 @@ const SideNavBar = () => {
   );
 
   return (
-    <div className="relative z-50">
+    <div className="fixed z-50">
       <div className="drawer lg:drawer-open font-Inter">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center p-2">
