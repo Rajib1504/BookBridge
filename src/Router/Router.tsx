@@ -5,6 +5,15 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import AllBooks from "../Pages/dashboard/admin/AllBooks";
 import ManageUsers from "../Pages/dashboard/admin/ManageUsers";
 
+import CreateBook from "../Pages/Dashboard/CreateBook";
+
+import UserLayout from "../Layout/UserLayout";
+import DashBoard from "../Pages/User/DashBoard";
+import MyProfile from "../Pages/User/MyProfile";
+import MyBooks from "../Pages/User/MyBooks";
+import MyHistory from "../Pages/User/MyHistory";
+import Payments from "../Pages/User/Payments";
+
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +40,32 @@ const Router = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManageUsers />,
+    path: "/dashboard",
+    element: <UserLayout></UserLayout>,
+    children: [
+      {
+        path: "user",
+        element: <DashBoard></DashBoard>,
+      },
+      {
+        path: "profile",
+        element: <MyProfile></MyProfile>,
+      },
+      {
+        path: "user/my-books/create",
+        element: <CreateBook />,
+      },
+      {
+        path: "my-book",
+        element: <MyBooks></MyBooks>,
+      },
+      {
+        path: "payments",
+        element: <Payments></Payments>,
+      },
+      {
+        path: "history",
+        element: <MyHistory></MyHistory>,
       },
     ],
   },
