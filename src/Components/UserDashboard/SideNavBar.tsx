@@ -11,13 +11,13 @@ const SideNavBar = () => {
             <li><NavLink to={"user"}> <MdOutlineSpaceDashboard className='text-xl'></MdOutlineSpaceDashboard> Dashboard</NavLink></li>
             <li><NavLink to={"profile"}> <RiFileUserLine className='text-xl'></RiFileUserLine>  My Profile</NavLink></li>
             <li><NavLink to={"my-book"}><LiaBookSolid className='text-xl'></LiaBookSolid> My Books</NavLink></li>
-            <li><NavLink to={"history"}> <RiHistoryFill></RiHistoryFill> My History</NavLink></li>
-            <li><NavLink to={"payments"}> <MdOutlinePayment></MdOutlinePayment> Payments</NavLink></li>
+            <li><NavLink to={"history"}> <RiHistoryFill className='text-xl'></RiHistoryFill> My History</NavLink></li>
+            <li><NavLink to={"payments"}> <MdOutlinePayment className='text-xl'></MdOutlinePayment> Payments</NavLink></li>
         </>
 
     return (
         <div>
-            <div className="drawer lg:drawer-open">
+            <div className="drawer lg:drawer-open font-Inter">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col items-center justify-center">
                     {/* Page content here */}
