@@ -13,6 +13,8 @@ import MyProfile from "../Pages/User/MyProfile";
 import MyBooks from "../Pages/User/MyBooks";
 import MyHistory from "../Pages/User/MyHistory";
 import Payments from "../Pages/User/Payments";
+import Login from "../Pages/Authentication/Login";
+import SignUp from "../Pages/Authentication/SignUp";
 
 const Router = createBrowserRouter([
   {
@@ -22,6 +24,19 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "signup",
+        element: <SignUp />,
+      },
+      {
+        path: "/dashboard/user/my-books/create",
+        element: <CreateBook />,
       },
     ],
   },
