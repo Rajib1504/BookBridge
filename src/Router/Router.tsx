@@ -6,6 +6,7 @@ import DashBoard from "../Pages/User/DashBoard";
 import MyProfile from "../Pages/User/MyProfile";
 import MyBooks from "../Pages/User/MyBooks";
 import MyHistory from "../Pages/User/MyHistory";
+import Payments from "../Pages/User/Payments";
 
 const Router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "payments",
-        element: <MyProfile></MyProfile>
+        element: <Payments></Payments>
       },
       {
         path: "history",
