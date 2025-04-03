@@ -5,7 +5,7 @@ import lineImg from "../assets/discountImages/line.webp";
 import { Link } from "react-router-dom";
 const Discount = () => {
   return (
-    // width control container
+    // width control container::: main container
     <div className="bg-[#FBE9DF] max-w-7xl mx-auto px-4 sm:px-6 md:px-16 my-20 font-Inter">
       {/* content container  */}
       <div
