@@ -2,10 +2,27 @@ import { FaFilter } from "react-icons/fa6";
 
 const FilterArea = () => {
   return (
-    <div className="bg-[#0080801A] border border-gray-300 rounded-2xl p-6 min-w-48 max-w-64">
-      <div>
-        <FaFilter className="inline-flex me-2 text-primaryColor"></FaFilter>{" "}
+    <div className="bg-[#eedfdb] border border-gray-300 rounded-2xl p-6 min-w-48 max-w-64">
+      <div className="flex items-center justify-between">
+        <FaFilter className="inline-flex me-2"></FaFilter>{" "}
         <span className="font-bold">Filter by:</span>
+        {/* per page count  */}
+        <div className="rounded border-gray-300 p-1">
+          <div className="flex items-center gap-2 ">
+            <select
+              defaultValue={12}
+              name="pagePerView"
+              id="pagePerView"
+              className="rounded-lg px-2 py-1 bg-white select select-xs"
+            >
+              <option value="12">12</option>
+              <option value="24">24</option>
+              <option value="36">36</option>
+              <option value="48">48</option>
+            </select>
+            <p className="text-xs lg:text-md">/page</p>
+          </div>
+        </div>
       </div>
 
       <div className="divider font-semibold font-Gilda">Availability</div>

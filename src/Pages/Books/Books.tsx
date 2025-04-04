@@ -6,6 +6,8 @@ import { FaFilter } from "react-icons/fa";
 import Spinner from "../../Components/spinner/Spinner";
 import { useQuery } from "@tanstack/react-query";
 import BestSellerCard from "../../Components/BestSellerCard";
+import { FaRegRectangleXmark } from "react-icons/fa6";
+import { GoSortAsc } from "react-icons/go";
 
 const Books = () => {
   type Books = {
@@ -54,6 +56,26 @@ const Books = () => {
       <div className="flex items-center justify-center">
         <h3 className="text-5xl font-Gilda">All Books</h3>
       </div>
+
+      {isFilterView && (
+        <div className="flex absolute z-40 lg:hidden">
+          <FilterArea></FilterArea>
+          <span
+            onClick={() => setIsFilterView(false)}
+            className="right-4 absolute top-2 text-2xl text-accentColor cursor-pointer"
+          >
+            <FaRegRectangleXmark />
+          </span>
+        </div>
+      )}
+
+      {isFilterView && (
+        <div
+          onClick={() => setIsFilterView(false)}
+          className="fixed inset-0 bg-primaryColor opacity-50 lg:hidden z-30"
+        ></div>
+      )}
+
       {/* content container  */}
       <div className="grid grid-cols-12 max-w-screen-2xl mx-auto px-4 mt-12 gap-6">
         {/* filter section */}
@@ -64,9 +86,18 @@ const Books = () => {
 
         <div className="col-span-12 lg:col-span-9">
           {/* sorting area */}
-          <div className="flex justify-between lg:justify-end gap-6 items-center bg-primaryColor/10 p-4 rounded-xl">
+          <div className="flex justify-between lg:justify-end gap-6 items-center p-4 rounded-xl">
             {/* filter section for small and medium devices  */}
-            <div>
+            {/* filter icon for small and medium devices  */}
+            <div className="inline lg:hidden">
+              <span
+                onClick={() => setIsFilterView(true)}
+                className="text-primaryColor text-xl"
+              >
+                <FaFilter />
+              </span>
+            </div>
+            <div className="border border-gray-300">
               <label className="input">
                 <svg
                   className="h-[1.5rem] opacity-50"
@@ -84,43 +115,22 @@ const Books = () => {
                     <path d="m21 21-4.3-4.3"></path>
                   </g>
                 </svg>
-                <input type="search" className="grow" placeholder="Search" />
+                <input
+                  type="search"
+                  className="input input-sm"
+                  placeholder="Search"
+                />
               </label>
             </div>
-            <div className="inline lg:hidden">
-              <span
-                onClick={() => setIsFilterView(true)}
-                className="text-primaryColor text-xl"
-              >
-                <FaFilter />
-              </span>
-            </div>
 
-            {/* per page count  */}
-            <div className="hidden lg:inline border p-1 rounded border-gray-300">
-              <div className="flex items-center gap-2 ">
-                <p className="text-sm lg:text-md">Show:</p>
-                <select
-                  defaultValue={12}
-                  name="pagePerView"
-                  id="pagePerView"
-                  className="rounded-lg px-2 py-1 bg-white"
-                >
-                  <option value="12">12</option>
-                  <option value="24">24</option>
-                  <option value="36">36</option>
-                  <option value="48">48</option>
-                </select>
-              </div>
-            </div>
             {/* sort item  */}
-            <div className="flex items-center gap-2 border p-1 border-gray-300 rounded">
-              <p className="text-sm lg:text-md">Sort by:</p>
+            <div className="flex items-center gap-2 border border-gray-300 rounded p-1">
+              {/* <p className="text-sm lg:text-md">Sort by:</p> */}
+              <GoSortAsc className="text-2xl" />
+
               <select
                 defaultValue="Default"
-                name="sortBy"
-                id="sortBy"
-                className="rounded-lg px-2 py-1 bg-white"
+                className="select select-sm border-0 focus:ring-0 ring-0"
               >
                 <option value="Default">Default</option>
                 <option value="Class (Small → Large)">
