@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Home from "../Pages/Home/Home";
 
-import CreateBook from "../Pages/Dashboard/CreateBook";
+import CreateBook from "../Pages/User/CreateBook";
 
 import UserLayout from "../Layout/UserLayout";
 import DashBoard from "../Pages/User/DashBoard";
@@ -10,6 +10,7 @@ import MyProfile from "../Pages/User/MyProfile";
 import MyBooks from "../Pages/User/MyBooks";
 import MyHistory from "../Pages/User/MyHistory";
 import Payments from "../Pages/User/Payments";
+import Books from "../Pages/Books/Books";
 
 const Router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/books",
+        element: <Books />,
       },
     ],
   },
