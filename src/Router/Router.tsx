@@ -39,10 +39,6 @@ const Router = createBrowserRouter([
         path: "signup",
         element: <SignUp />,
       },
-      {
-        path: "/dashboard/user/my-books/create",
-        element: <CreateBook />,
-      },
     ],
   },
   {
