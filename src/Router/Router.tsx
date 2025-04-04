@@ -6,6 +6,18 @@ import AllBooks from "../Pages/dashboard/admin/AllBooks";
 import ManageUsers from "../Pages/dashboard/admin/ManageUsers";
 import TrafficAnalytics from "../Pages/dashboard/admin/TrafficAnalytics";
 
+import CreateBook from "../Pages/User/CreateBook";
+
+import UserLayout from "../Layout/UserLayout";
+import DashBoard from "../Pages/User/DashBoard";
+import MyProfile from "../Pages/User/MyProfile";
+import MyBooks from "../Pages/User/MyBooks";
+import MyHistory from "../Pages/User/MyHistory";
+import Payments from "../Pages/User/Payments";
+import Books from "../Pages/Books/Books";
+import Login from "../Pages/Authentication/Login";
+import SignUp from "../Pages/Authentication/SignUp";
+
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -14,6 +26,19 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/books",
+        element: <Books />,
+      },
+
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "signup",
+        element: <SignUp />,
       },
     ],
   },
@@ -36,6 +61,36 @@ const Router = createBrowserRouter([
       {
         path: "traffic",
         element: <TrafficAnalytics />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <UserLayout></UserLayout>,
+    children: [
+      {
+        path: "user",
+        element: <DashBoard></DashBoard>,
+      },
+      {
+        path: "profile",
+        element: <MyProfile></MyProfile>,
+      },
+      {
+        path: "user/my-books/create",
+        element: <CreateBook />,
+      },
+      {
+        path: "my-book",
+        element: <MyBooks></MyBooks>,
+      },
+      {
+        path: "payments",
+        element: <Payments></Payments>,
+      },
+      {
+        path: "history",
+        element: <MyHistory></MyHistory>,
       },
     ],
   },
