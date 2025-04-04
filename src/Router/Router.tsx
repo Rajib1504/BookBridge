@@ -5,7 +5,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import AllBooks from "../Pages/dashboard/admin/AllBooks";
 import ManageUsers from "../Pages/dashboard/admin/ManageUsers";
 
-import CreateBook from "../Pages/Dashboard/CreateBook";
+import CreateBook from "../Pages/User/CreateBook";
 
 import UserLayout from "../Layout/UserLayout";
 import DashBoard from "../Pages/User/DashBoard";
@@ -13,6 +13,7 @@ import MyProfile from "../Pages/User/MyProfile";
 import MyBooks from "../Pages/User/MyBooks";
 import MyHistory from "../Pages/User/MyHistory";
 import Payments from "../Pages/User/Payments";
+import Books from "../Pages/Books/Books";
 import Login from "../Pages/Authentication/Login";
 import SignUp from "../Pages/Authentication/SignUp";
 
@@ -24,6 +25,10 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/books",
+        element: <Books />,
       },
 
       {
@@ -55,6 +60,10 @@ const Router = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManageUsers />,
+      },
+    ],
+  },
+  {
     path: "/dashboard",
     element: <UserLayout></UserLayout>,
     children: [
