@@ -1,24 +1,24 @@
 import { Link, NavLink } from "react-router-dom";
-import userImage from "../assets/user.gif";
-import { useEffect, useState } from "react";
-import { FaMoon, FaSearch, FaSun } from "react-icons/fa";
+import userImage from "../assets/user.webp";
+// import { useEffect, useState } from "react";
+import { FaSearch } from "react-icons/fa";
 import { PiBellSimpleRinging } from "react-icons/pi";
 import { FaCartShopping } from "react-icons/fa6";
 
 const Navbar = () => {
-  const [theme, setTheme] = useState<"light" | "dark">(() => {
-    // Get the theme from localStorage or default to 'light'
-    return (localStorage.getItem("theme") as "light" | "dark") || "light";
-  });
+  // const [theme, setTheme] = useState<"light" | "dark">(() => {
+  //   // Get the theme from localStorage or default to 'light'
+  //   return (localStorage.getItem("theme") as "light" | "dark") || "light";
+  // });
 
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  // useEffect(() => {
+  //   document.documentElement.setAttribute("data-theme", theme);
+  //   localStorage.setItem("theme", theme);
+  // }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
+  // const toggleTheme = () => {
+  //   setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  // };
 
   const notificationCount = 3; // Example notification count
   const cartCount = 2; // Example cart count
@@ -43,6 +43,9 @@ const Navbar = () => {
       <li>
         <NavLink to="/blogs">Contact</NavLink>
       </li>
+      <li>
+        <NavLink to="/dashboard/admin">Dashboard</NavLink>
+      </li>
     </>
   );
   return (
@@ -54,8 +57,8 @@ const Navbar = () => {
             to="/"
             className="hidden lg:block text-4xl font-bold tracking-tight relative group"
           >
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 blur-lg opacity-30 group-hover:opacity-70 transition-opacity duration-300"></span>
-            <div className="relative text-gray-700 group-hover:text-white transition-colors duration-300">
+            <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 blur-lg opacity-30  transition-opacity duration-300"></span>
+            <div className="relative text-gray-700 transition-colors duration-300">
               <span className="text-yellow-600">B</span>ook
               <span className="text-red-600">B</span>ridge
             </div>
@@ -63,8 +66,7 @@ const Navbar = () => {
 
           <div className="hidden lg:flex">
             <ul
-              className="menu menu-horizontal space-x-6 font-bold text-base"
-              style={{ fontFamily: "var(--font-nunito)" }}
+              className="menu menu-horizontal space-x-2 font-bold text-base"
             >
               {links}
             </ul>
@@ -134,7 +136,7 @@ const Navbar = () => {
             />
           </div>
           {/* notification icon */}
-          <button className="relative text-2xl text-orange-500 p-2">
+          <button className="relative text-2xl p-2">
             <PiBellSimpleRinging />
             {/* Notification badge */}
             {notificationCount > 0 && (
@@ -145,7 +147,7 @@ const Navbar = () => {
           </button>
 
           {/* Cart icon */}
-          <button className="relative text-2xl text-orange-500 p-2">
+          <button className="relative text-2xl p-2">
             <FaCartShopping />
             {/* Cart badge */}
             {cartCount > 0 && (
@@ -156,7 +158,7 @@ const Navbar = () => {
           </button>
 
           {/* Theme Toggle */}
-          <button
+          {/* <button
             className="p-2 text-2xl cursor-pointer"
             onClick={toggleTheme}
             title="Toggle Theme"
@@ -166,7 +168,7 @@ const Navbar = () => {
             ) : (
               <FaSun className="text-yellow-500 transition-transform duration-300 hover:scale-110" />
             )}
-          </button>
+          </button> */}
 
           {/* Profile Dropdown */}
           <div

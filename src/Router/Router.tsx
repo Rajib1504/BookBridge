@@ -1,6 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Home from "../Pages/Home/Home";
+import DashboardLayout from "../Layout/DashboardLayout";
+import AllBooks from "../Pages/dashboard/admin/AllBooks";
+import ManageUsers from "../Pages/dashboard/admin/ManageUsers";
 
 import CreateBook from "../Pages/User/CreateBook";
 
@@ -11,6 +14,8 @@ import MyBooks from "../Pages/User/MyBooks";
 import MyHistory from "../Pages/User/MyHistory";
 import Payments from "../Pages/User/Payments";
 import Books from "../Pages/Books/Books";
+import Login from "../Pages/Authentication/Login";
+import SignUp from "../Pages/Authentication/SignUp";
 
 const Router = createBrowserRouter([
   {
@@ -24,6 +29,37 @@ const Router = createBrowserRouter([
       {
         path: "/books",
         element: <Books />,
+      },
+
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "signup",
+        element: <SignUp />,
+      },
+      {
+        path: "/dashboard/user/my-books/create",
+        element: <CreateBook />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard/admin",
+    element: <DashboardLayout />,
+    children: [
+      {
+        index: true,
+        element: <AllBooks />,
+      },
+      {
+        path: "all-books",
+        element: <AllBooks />,
+      },
+      {
+        path: "manage-users",
+        element: <ManageUsers />,
       },
     ],
   },
