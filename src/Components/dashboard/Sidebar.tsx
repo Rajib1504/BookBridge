@@ -40,13 +40,13 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar }) => {
     },
   ];
   return (
-    <aside className="w-64 bg-gray-800 text-white h-screen shadow-lg flex flex-col">
+    <aside className="w-64 bg-base-300 text-black font-Gilda h-screen shadow-lg flex flex-col">
       {/* Header Section */}
       <div className="p-6 text-center flex lg:block justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-yellow-400">Dashboard</h2>
+          <h2 className="text-2xl font-bold">Dashboard</h2>
           {/* Replace with dynamic user type if needed */}
-          <p className="text-sm text-gray-300 mt-2">
+          <p className="text-sm text-black font-Inter mt-2">
             {/* Welcome, {user?.displayName} */}
             Welcome
           </p>
@@ -63,14 +63,14 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar }) => {
       </div>
 
       {/* Navigation Section */}
-      <nav className="flex flex-col flex-grow mt-6 mx-2">
+      <nav className="flex flex-col flex-grow mt-2 mx-2">
         {/* Main menu items */}
-        <ul className="space-y-4">
+        <ul className="space-y-1">
           {menuItems.map((item, index) => (
             <li id="sidebar" key={index}>
               <NavLink
                 to={item.path}
-                className="flex items-center px-4 py-2 text-gray-200 hover:bg-gray-700 hover:text-white rounded-md transition"
+                className="flex items-center px-4 py-1 font-Inter rounded-md transition"
               >
                 <span className="text-lg mr-3">{item.icon}</span>
                 <span className="font-medium">{item.name}</span>
@@ -79,28 +79,28 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar }) => {
           ))}
         </ul>
 
-        <div className="divider divider-warning px-3"></div>
+        <div className="divider divider-neutral px-3 "></div>
         {/* Back to Home link */}
         <ul className="">
           <li>
             <Link
               to="/"
-              className="flex items-center px-4 py-2 text-gray-200 hover:bg-gray-700 hover:text-white rounded-md transition"
+              className="flex items-center px-4  rounded-md transition"
             >
               <span className="text-lg mr-3">
                 <FaHome />
               </span>
-              <span className="font-medium">Back to Home</span>
+              <span className="font-medium font-Inter">Back to Home</span>
             </Link>
           </li>
           <li
             // onClick={userLogout}
-            className="cursor-pointer flex items-center px-4 py-2 text-gray-200 hover:bg-gray-700 hover:text-white rounded-md transition"
+            className="cursor-pointer flex items-center px-4 py-2 rounded-md transition"
           >
             <span className="text-lg mr-3">
               <BiLogOut />
             </span>
-            <span className="font-medium">Logout</span>
+            <span className="font-medium font-Inter">Logout</span>
           </li>
         </ul>
       </nav>
