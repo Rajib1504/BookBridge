@@ -32,16 +32,16 @@ const Navbar = () => {
         <NavLink to="/about">Categories</NavLink>
       </li>
       <li>
-        <NavLink to="/shop">Shop</NavLink>
+        <NavLink to="/shop">Browse Books</NavLink>
       </li>
       <li>
-        <NavLink to="/shop">Pages</NavLink>
+        <NavLink to="/shop">Book Listing</NavLink>
       </li>
       <li>
-        <NavLink to="/blogs">Blogs</NavLink>
+        <NavLink to="/blogs">My Books</NavLink>
       </li>
       <li>
-        <NavLink to="/blogs">Contact</NavLink>
+        <NavLink to="/blogs">About Us</NavLink>
       </li>
       <li>
         <NavLink to="/dashboard/admin">Dashboard</NavLink>
@@ -55,9 +55,9 @@ const Navbar = () => {
         <div className="flex items-center gap-5">
           <Link
             to="/"
-            className="hidden lg:block text-4xl font-bold tracking-tight relative group"
+            className="hidden lg:block text-2xl font-bold font-Gilda tracking-tight relative group"
           >
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 blur-lg opacity-30  transition-opacity duration-300"></span>
+            <span className="absolute inset-0 blur-lg opacity-30  transition-opacity duration-300"></span>
             <div className="relative text-gray-700 transition-colors duration-300">
               <span className="text-yellow-600">B</span>ook
               <span className="text-red-600">B</span>ridge
@@ -66,7 +66,7 @@ const Navbar = () => {
 
           <div className="hidden lg:flex">
             <ul
-              className="menu menu-horizontal space-x-2 font-bold text-base"
+              className="menu menu-horizontal font-bold text-sm font-Inter"
             >
               {links}
             </ul>
@@ -180,8 +180,8 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
               aria-label="Toggle Profile Dropdown"
             >
-              <div className="w-10 h-10 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 bg-gray-200">
-                <img src={userImage} alt="" />
+              <div className="w-9 h-9 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 bg-gray-200">
+                <img src={userImage} alt="" className="object-cover" />
                 {/* {user && user.email ? (
                   <img
                     referrerPolicy="no-referrer"
