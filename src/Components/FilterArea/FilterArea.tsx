@@ -29,11 +29,10 @@ const FilterArea = () => {
       {/* filter by availability */}
       <div>
         <div>
-          <input type="checkbox" name="All" id="All" />
-          <label htmlFor="All"> All</label>
-        </div>
-        <div>
-          <input type="checkbox" name="Exchange" id="Exchange" />
+          <input
+            type="checkbox"
+            name="Exchange"
+            id="Exchange" />
           <label htmlFor="Exchange"> Exchange</label>
         </div>
         <div>
