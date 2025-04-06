@@ -182,7 +182,7 @@ const Books = () => {
       </div>
       {/* section title  */}
       <div className="flex items-center justify-center">
-        <h3 className="text-5xl font-Gilda">All Books</h3>
+        <h3 className="text-5xl font-Gilda">Browse Books</h3>
       </div>
 
       {isFilterView && (
