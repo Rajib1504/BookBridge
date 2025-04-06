@@ -28,7 +28,7 @@ const Books = () => {
   };
   const axiosPublic = useAxiosPublic();
   const [isFilterView, setIsFilterView] = useState(false);
-  const [itemsPerPage, setItemsPerPage] = useState(12);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(12);
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedSortValue, setSelectedSortValue] = useState<string>("");
   const [searchValue, setSearchValue] = useState<string>("");
@@ -49,7 +49,7 @@ const Books = () => {
   // filters default value
   const [filters, setFilters] = useState({
     availability: {
-      Exchange: true,
+      Exchange: false,
       Rent: false,
     },
     category: {
@@ -156,7 +156,13 @@ const Books = () => {
 
       {isFilterView && (
         <div className="flex absolute z-40 lg:hidden">
-          <FilterArea />
+          <FilterArea
+            filters={filters}
+            setFilters={setFilters}
+            itemsPerPage={itemsPerPage}
+            setItemsPerPage={setItemsPerPage}
+            setCurrentPage={setCurrentPage}
+          />
           <span
             onClick={() => setIsFilterView(false)}
             className="right-4 absolute top-2 text-2xl text-accentColor cursor-pointer"
@@ -177,13 +183,19 @@ const Books = () => {
       <div className="grid grid-cols-12 max-w-screen-2xl mx-auto px-4 mt-12 gap-6">
         {/* filter section */}
         <div className="lg:col-span-3 hidden lg:inline">
-          <FilterArea />
+          <FilterArea
+            filters={filters}
+            setFilters={setFilters}
+            itemsPerPage={itemsPerPage}
+            setItemsPerPage={setItemsPerPage}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
 
         {/* content section  */}
         <div className="col-span-12 lg:col-span-9">
           {/* sorting area */}
-          <div className="flex justify-between lg:justify-end gap-6 items-center p-4 rounded-xl">
+          <div className="flex justify-between lg:justify-end gap-6 items-center p-4 rounded-xl bg-[#f9f9f9]">
             {/* filter section for small and medium devices  */}
             {/* filter icon for small and medium devices  */}
             <div className="inline lg:hidden">
@@ -244,13 +256,14 @@ const Books = () => {
               <BestSellerCard key={book?.bookId} book={book}></BestSellerCard>
             ))}
           </div>
+
+          {/* pagination section  */}
           <div className="join flex items-center justify-center mt-6">
             <button className="join-item btn btn-sm">1</button>
             <button className="join-item btn btn-sm btn-active">2</button>
             <button className="join-item btn btn-sm">3</button>
             <button className="join-item btn btn-sm">4</button>
           </div>
-          {/* </div> */}
         </div>
       </div>
 
