@@ -33,9 +33,6 @@ const Books = () => {
   const [selectedSortValue, setSelectedSortValue] = useState<string>("");
   const [searchValue, setSearchValue] = useState<string>("");
 
-  // console.log(selectedSortValue);
-  // console.log(searchValue);
-
   // sorting handler
   const handleSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedSortValue(e.target.value);
@@ -123,8 +120,6 @@ const Books = () => {
 
   // transform filters into query string
   const queryString = transformToQuery(filters);
-  // console.log(filters);
-  // console.log(queryString);
 
   // get total books count based on queries::: this will be need to calc pagination
   const { data: booksCount = {} } = useQuery({
@@ -138,14 +133,11 @@ const Books = () => {
     },
   });
 
-  console.log(booksCount?.count);
-
   // calculate number of page and page sequence
   const numberOfPage = Math.ceil(booksCount?.count / itemsPerPage);
   const pagesSequence = !isNaN(numberOfPage)
     ? [...Array(numberOfPage).keys()]
     : [];
-  console.log("number of page", numberOfPage, "page sequence", pagesSequence);
 
   // get all books from db based on query
   const {
@@ -164,13 +156,10 @@ const Books = () => {
     refetch();
   }, [queryString]);
 
-  console.log(allBooks);
-
   const handlePrev = () => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
     }
-    // console.log(currentPageFromArgu, currentPage);
   };
   const handleNext = () => {
     if (currentPage + 1 < pagesSequence.length) {
