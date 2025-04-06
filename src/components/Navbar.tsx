@@ -32,7 +32,7 @@ const Navbar = () => {
         <NavLink to="/about">Categories</NavLink>
       </li>
       <li>
-        <NavLink to="/shop">Browse Books</NavLink>
+        <NavLink to="/browse-books">Browse Books</NavLink>
       </li>
       <li>
         <NavLink to="/shop">Book Listing</NavLink>
@@ -65,9 +65,7 @@ const Navbar = () => {
           </Link>
 
           <div className="hidden lg:flex">
-            <ul
-              className="menu menu-horizontal font-bold text-sm font-Inter"
-            >
+            <ul className="menu menu-horizontal font-bold text-sm font-Inter">
               {links}
             </ul>
           </div>

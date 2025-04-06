@@ -176,13 +176,13 @@ const Books = () => {
             <Link to={"/"}>Home</Link>
           </li>
           <li>
-            <Link to={"/books"}>Books</Link>
+            <Link to={"/browse-books"}>Browse-books</Link>
           </li>
         </ul>
       </div>
       {/* section title  */}
       <div className="flex items-center justify-center">
-        <h3 className="text-5xl font-Gilda">All Books</h3>
+        <h3 className="text-5xl font-Gilda">Browse Books</h3>
       </div>
 
       {isFilterView && (
