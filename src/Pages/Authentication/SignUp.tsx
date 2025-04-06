@@ -6,7 +6,11 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
+
+
 const SignUp = () => {
+  const {googlelogin,Register}=useAuth()
   const navigate = useNavigate()
 
   type FormData = {
@@ -22,9 +26,17 @@ const SignUp = () => {
     formState: { errors },
   } = useForm<FormData>();
   const onSubmit = async (data: FormData) => {
- 
+    const {email,password}=data
+ console.log("clicked")
+ Register(email,password).then((res)=>{
+  console.log(res.user)
+ toast.success(`wellcome your registration ${res.user.email}`)
+ navigate('/')
+ }).catch((err)=>{
+  toast.error(`Opps.. ${err.message}`);
+ })
   };
-  const {googlelogin}=useAuth()
+
 const handlegoogleSignin=()=>{
   console.log("clicked")
   googlelogin().then((res)=>{
@@ -44,6 +56,7 @@ const handlegoogleSignin=()=>{
 })
 .catch((err)=>console.log(err.message))
 } 
+
 
   return (
     <section className="flex justify-center items-center min-h-screen  flex-col bg-base-200 ">
@@ -68,9 +81,10 @@ const handlegoogleSignin=()=>{
           >
             <div className="flex gap-4">
               <input
-                {...register("FirstName", { required: "Name is Required" })}
+                
                 placeholder="First Name"
                 className="w-1/2  px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
+                {...register("FirstName", { required: "Name is Required" })}
               />
               {errors.FirstName && <p>{errors.FirstName.message}</p>}
               <input
@@ -87,6 +101,7 @@ const handlegoogleSignin=()=>{
             />
             {errors.email && <p>{errors.email.message}</p>}
             <input
+            type="password"
               {...register("password", { required: "password is Required" })}
               placeholder="Password"
               className="  px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"

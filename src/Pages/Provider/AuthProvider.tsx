@@ -8,12 +8,13 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import { User } from "firebase/auth";
 import { auth } from "../../Firebase/Firebase.config";
 export const AuthContext = createContext(null);
 
  const AuthProvider = ({ children }) => {
   const axiosPublic = useAxiosPublic();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User|null>(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
 
@@ -21,11 +22,11 @@ export const AuthContext = createContext(null);
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
-  const signUp = () => {
+  const Register = (email:string,password:string) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  const login = () => {
+  const login = (email:string,password:string) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
@@ -52,7 +53,7 @@ export const AuthContext = createContext(null);
     loading,
     setLoading,
     googlelogin,
-    signUp,
+    Register,
     login,
     logout,
   };
