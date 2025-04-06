@@ -73,7 +73,7 @@ export default function CreateBook() {
             exchangePreferences: data.exchangePreferences || null,
             category: data.category,
             location: data.location,
-            rentalPrice: data.rentalPrice || null,
+            rentalPrice: data.rentalPrice || 0,
             title: data.title,
             postAt: new Date(),
             approveAt: new Date(),
@@ -311,12 +311,12 @@ export default function CreateBook() {
           </div>
 
           <div className="flex items-center justify-center">
-          <button
-            type="submit"
-            className="text-white uppercase py-6 tracking-widest text-xs border btn bg-[#d62928] hover:bg-[#FFB237]"
-          >
-            Post Book
-          </button>
+            <button
+              type="submit"
+              className="text-white uppercase py-6 tracking-widest text-xs border btn bg-[#d62928] hover:bg-[#FFB237]"
+            >
+              Post Book
+            </button>
           </div>
         </form>
       </div>

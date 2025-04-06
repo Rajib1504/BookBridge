@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hooks/axiosPublic";
 import { Link } from "react-router-dom";
 import FilterArea from "../../Components/FilterArea/FilterArea";
@@ -123,18 +123,60 @@ const Books = () => {
 
   // transform filters into query string
   const queryString = transformToQuery(filters);
-  console.log(filters);
-  console.log(queryString);
+  // console.log(filters);
+  // console.log(queryString);
 
-  const { data: allBooks = [], isLoading: allBooksLoading } = useQuery({
-    queryKey: ["allBooks"],
+  // get total books count based on queries::: this will be need to calc pagination
+  const { data: booksCount = {} } = useQuery({
+    queryKey: ["booksCount", queryString],
     queryFn: async () => {
-      const res = await axiosPublic.get("/api/books");
+      const res = await axiosPublic.get(
+        // `/api/books-count?${queryString}&count=1`
+        `/api/books?${queryString}&count=1`
+      );
       return res.data;
     },
   });
 
-  // console.log(allBooks);
+  console.log(booksCount?.count);
+
+  // calculate number of page and page sequence
+  const numberOfPage = Math.ceil(booksCount?.count / itemsPerPage);
+  const pagesSequence = !isNaN(numberOfPage)
+    ? [...Array(numberOfPage).keys()]
+    : [];
+  console.log("number of page", numberOfPage, "page sequence", pagesSequence);
+
+  // get all books from db based on query
+  const {
+    data: allBooks = [],
+    isLoading: allBooksLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["allBooks", queryString],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/api/books?${queryString}`);
+      return res.data;
+    },
+  });
+
+  useEffect(() => {
+    refetch();
+  }, [queryString]);
+
+  console.log(allBooks);
+
+  const handlePrev = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+    // console.log(currentPageFromArgu, currentPage);
+  };
+  const handleNext = () => {
+    if (currentPage + 1 < pagesSequence.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 my-20 font-Inter">
@@ -259,10 +301,41 @@ const Books = () => {
 
           {/* pagination section  */}
           <div className="join flex items-center justify-center mt-6">
-            <button className="join-item btn btn-sm">1</button>
-            <button className="join-item btn btn-sm btn-active">2</button>
-            <button className="join-item btn btn-sm">3</button>
-            <button className="join-item btn btn-sm">4</button>
+            {/* <button className="join-item btn btn-sm">1</button> */}
+            {pagesSequence.length > 1 && (
+              // pagesSequence?.map((serial) => (
+              <button
+                onClick={() => handlePrev()}
+                className={`join-item btn btn-sm ${
+                  currentPage === 0 && "btn-disabled"
+                }`}
+              >
+                Prev
+              </button>
+            )}
+            {pagesSequence.length > 1 &&
+              pagesSequence?.map((serial) => (
+                <button
+                  key={serial}
+                  onClick={() => setCurrentPage(serial)}
+                  className={`join-item btn btn-sm ${
+                    currentPage === serial && "btn-active"
+                  }`}
+                >
+                  {serial + 1}
+                </button>
+              ))}
+            {pagesSequence.length > 1 && (
+              // pagesSequence?.map((serial) => (
+              <button
+                onClick={handleNext}
+                className={`join-item btn btn-sm ${
+                  currentPage === pagesSequence.length - 1 && "btn-disabled"
+                }`}
+              >
+                Next
+              </button>
+            )}
           </div>
         </div>
       </div>
