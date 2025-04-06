@@ -3,11 +3,11 @@ import loginimg from "../../assets/Images/AuthenticationImage/loginimage.webp";
 import { SiGithub } from "react-icons/si";
 import { FaTwitter } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-
-import { auth } from "./../../Firebase/Firebase.config";
-
-
+import useAuth from "../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 const SignUp = () => {
+  const navigate = useNavigate()
 
   type FormData = {
     email: string;
@@ -24,7 +24,26 @@ const SignUp = () => {
   const onSubmit = async (data: FormData) => {
  
   };
-
+  const {googlelogin}=useAuth()
+const handlegoogleSignin=()=>{
+  console.log("clicked")
+  googlelogin().then((res)=>{
+    const userInfo = {
+      Name: res.user?.displayName,
+    email: res.user?.email,
+  }
+    console.log(userInfo)
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `wellcome ${userInfo.Name} `,
+      showConfirmButton: false,
+      timer: 1000
+    });
+    navigate('/');
+})
+.catch((err)=>console.log(err.message))
+} 
 
   return (
     <section className="flex justify-center items-center min-h-screen  flex-col bg-base-200 ">
@@ -91,7 +110,7 @@ const SignUp = () => {
           <div className="my-6 text-gray-600">Or Sign Up With</div>
           <div className="flex justify-center items-center gap-6">
             <FcGoogle
-              // onClick={handlegoogleSignin}
+              onClick={handlegoogleSignin}
               className="text-4xl cursor-pointer"
             />
             <SiGithub className="text-4xl cursor-pointer" />
