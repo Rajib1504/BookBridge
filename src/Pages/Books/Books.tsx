@@ -176,7 +176,7 @@ const Books = () => {
             <Link to={"/"}>Home</Link>
           </li>
           <li>
-            <Link to={"/books"}>Books</Link>
+            <Link to={"/browse-books"}>Browse-books</Link>
           </li>
         </ul>
       </div>
