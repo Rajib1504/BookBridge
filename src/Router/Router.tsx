@@ -17,6 +17,7 @@ import Payments from "../Pages/User/Payments";
 import Books from "../Pages/Books/Books";
 import Login from "../Pages/Authentication/Login";
 import SignUp from "../Pages/Authentication/SignUp";
+import Profile from "../Pages/dashboard/admin/Profile";
 
 const Router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const Router = createBrowserRouter([
       {
         path: "traffic",
         element: <TrafficAnalytics />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
     ],
   },
