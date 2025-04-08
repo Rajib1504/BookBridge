@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Zoom } from "react-awesome-reveal";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { LuDollarSign } from "react-icons/lu";
+import { Link } from "react-router-dom";
 
 type Books = {
   availability: string;
@@ -64,7 +65,11 @@ const BestSellerCard = ({ book }: BestSellerCardProps) => {
           <Rating style={{ maxWidth: 100 }} value={3} readOnly />
           <h5 className="text-[#828282] text-sm">(1 review)</h5>
         </div>
-        <h2 className="card-title">{book?.title}</h2>
+        <Link to={`/browse-books/${book?.bookId}`}>
+          <h2 className="card-title hover:underline hover:text-[#d62928]">
+            {book?.title}
+          </h2>
+        </Link>
         <h5 className="text-[#828282] text-sm">{book?.category}</h5>
         <div className="flex items-center gap-x-2">
           <h3 className="text-[#d62928] font-medium text-xl flex items-center ">

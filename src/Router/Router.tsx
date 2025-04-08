@@ -18,6 +18,7 @@ import Books from "../Pages/Books/Books";
 import Login from "../Pages/Authentication/Login";
 import SignUp from "../Pages/Authentication/SignUp";
 import Profile from "../Pages/dashboard/admin/Profile";
+import BookDetails from "../Pages/Books/BookDetails";
 
 const Router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const Router = createBrowserRouter([
       {
         path: "/browse-books",
         element: <Books />,
+      },
+      {
+        path: "/browse-books/:id",
+        element: <BookDetails />,
       },
 
       {
