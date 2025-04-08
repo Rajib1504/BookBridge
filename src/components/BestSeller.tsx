@@ -1,4 +1,5 @@
 import BestSellerCard from "./BestSellerCard";
+import Features from "./Features";
 
 
 const BestSeller = () => {
@@ -50,6 +51,8 @@ const BestSeller = () => {
                 <input type="radio" name="my_tabs_2" className="tab" aria-label="Photography" />
                 <div className="tab-content bg-base-100 py-10">Photography</div>
             </div>
+
+            <Features></Features>
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 import brand1 from "../assets/brandImages/book-kaixa-brands.png"
 import brand2 from "../assets/brandImages/books-universe-brands.png"
@@ -19,7 +19,7 @@ const ShopbyBrands = () => {
                 <h2 className='font-Gilda text-4xl'>Shop By Brands</h2>
             </div>
 
-            <div className='grid grid-cols-5 gap-6'>
+            <div className='grid md: grid-cols-2 lg:grid-cols-5 gap-6'>
                 {/* Brand Logos */}
 
                 <div>
