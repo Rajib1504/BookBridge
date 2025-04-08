@@ -2,8 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Home from "../Pages/Home/Home";
 import DashboardLayout from "../Layout/DashboardLayout";
-import AllBooks from "../Pages/dashboard/admin/AllBooks";
-import ManageUsers from "../Pages/dashboard/admin/ManageUsers";
+
+
 
 import CreateBook from "../Pages/Dashboard/CreateBook";
 
@@ -13,6 +13,8 @@ import MyProfile from "../Pages/User/MyProfile";
 import MyBooks from "../Pages/User/MyBooks";
 import MyHistory from "../Pages/User/MyHistory";
 import Payments from "../Pages/User/Payments";
+import AllBooks from "../Pages/Dashboard/admin/AllBooks";
+import ManageUsers from "../Pages/Dashboard/admin/ManageUsers";
 
 const Router = createBrowserRouter([
   {
@@ -40,6 +42,10 @@ const Router = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManageUsers />,
+      },]
+  },
+
+  {
     path: "/dashboard",
     element: <UserLayout></UserLayout>,
     children: [

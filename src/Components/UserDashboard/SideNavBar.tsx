@@ -5,7 +5,8 @@ import {
   MdOutlinePayment,
   MdOutlineSpaceDashboard,
 } from "react-icons/md";
-import { RiFileUserLine, RiHistoryFill } from "react-icons/ri";
+import { PiSignOutFill } from "react-icons/pi";
+import { RiFileUserLine, RiHistoryFill, RiHome9Line, RiHomeHeartLine } from "react-icons/ri";
 import { TbLayoutSidebarLeftCollapse } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 
@@ -48,6 +49,21 @@ const SideNavBar = () => {
           <MdOutlinePayment className="text-xl"></MdOutlinePayment> Payments
         </NavLink>
       </li>
+
+      <div className="divider"></div>
+
+      <li>
+        <NavLink to={"/"}>
+          {" "}
+          <RiHome9Line className="text-xl"></RiHome9Line> Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to={"/"}>
+          {" "}
+          <PiSignOutFill className="text-xl"></PiSignOutFill> Logout
+        </NavLink>
+      </li>
     </>
   );
 
@@ -70,7 +86,7 @@ const SideNavBar = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu bg-base-100 text-base-content min-h-full w-64 p-4">
+          <ul className="menu hover:bg-white bg-base-100 text-base-content min-h-full w-64 p-4 space-y-2">
             {/* Sidebar content here */}
             {menus}
           </ul>
