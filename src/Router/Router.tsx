@@ -19,6 +19,7 @@ import Login from "../Pages/Authentication/Login";
 import SignUp from "../Pages/Authentication/SignUp";
 import Profile from "../Pages/dashboard/admin/Profile";
 import BookDetails from "../Pages/Books/BookDetails";
+import About from "../Pages/About/About";
 
 const Router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const Router = createBrowserRouter([
       {
         path: "/browse-books/:id",
         element: <BookDetails />,
+      },
+      {
+        path: "/about-us",
+        element: <About />,
       },
 
       {
