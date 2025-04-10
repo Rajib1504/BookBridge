@@ -107,7 +107,7 @@ const categories: Category[] = [
     id: 9,
     name: 'Mystery & Thriller',
     description: 'Unravel puzzles and suspenseful stories',
-    icon: <GiMagnifyingGlass size={40} />,  // from react-icons/gi
+    icon: <GiMagnifyingGlass size={40} />,  
     color: '#6b7280',
     bgColor: 'rgba(107, 114, 128, 0.1)'
   },
@@ -115,7 +115,7 @@ const categories: Category[] = [
     id: 10,
     name: 'Biography',
     description: 'Life stories of remarkable individuals',
-    icon: <GiHistogram size={40} />,  // from react-icons/gi
+    icon: <GiHistogram size={40} />,  
     color: '#8b5cf6',
     bgColor: 'rgba(139, 92, 246, 0.1)'
   },
@@ -123,7 +123,7 @@ const categories: Category[] = [
     id: 11,
     name: 'Children',
     description: 'Books for young readers',
-    icon: <GiBabyFace size={40} />,  // from react-icons/gi
+    icon: <GiBabyFace size={40} />,  
     color: '#ec4899',
     bgColor: 'rgba(236, 72, 153, 0.1)'
   },
@@ -131,7 +131,7 @@ const categories: Category[] = [
     id: 12,
     name: 'Others',
     description: 'All other book categories',
-    icon: <GiThreeFriends size={40} />,  // from react-icons/gi
+    icon: <GiThreeFriends size={40} />,  
     color: '#64748b',
     bgColor: 'rgba(100, 116, 139, 0.1)'
   }
