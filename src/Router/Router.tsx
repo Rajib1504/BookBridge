@@ -21,6 +21,7 @@ import Profile from "../Pages/dashboard/admin/Profile";
 import BookDetails from "../Pages/Books/BookDetails";
 import About from "../Pages/About/About";
 import Contact from "../Pages/Contact/Contact";
+import Categories from "../Pages/Categories/Categories";
 
 const Router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/categories",
+        element: <Categories />,
       },
       {
         path: "/browse-books",
