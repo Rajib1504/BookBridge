@@ -20,6 +20,7 @@ import SignUp from "../Pages/Authentication/SignUp";
 import Profile from "../Pages/dashboard/admin/Profile";
 import BookDetails from "../Pages/Books/BookDetails";
 import About from "../Pages/About/About";
+import Contact from "../Pages/Contact/Contact";
 
 const Router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const Router = createBrowserRouter([
       {
         path: "/about-us",
         element: <About />,
+      },
+      {
+        path: "/contact-us",
+        element: <Contact />,
       },
 
       {

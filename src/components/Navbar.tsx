@@ -44,6 +44,9 @@ const Navbar = () => {
         <NavLink to="/about-us">About Us</NavLink>
       </li>
       <li>
+        <NavLink to="/contact-us">Contact Us</NavLink>
+      </li>
+      <li>
         <NavLink to="/dashboard/admin">Dashboard</NavLink>
       </li>
     </>
@@ -52,7 +55,7 @@ const Navbar = () => {
     <div className="px-4 lg:px-6">
       <div className="navbar justify-between py-2">
         {/* Navbar Start */}
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-1">
           <Link
             to="/"
             className="hidden lg:block text-2xl font-bold font-Gilda tracking-tight relative group"
