@@ -74,10 +74,8 @@ const Router = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManageUsers />,
-      },]
-  },
-
       },
+
       {
         path: "traffic",
         element: <TrafficAnalytics />,
@@ -86,7 +84,8 @@ const Router = createBrowserRouter([
         path: "profile",
         element: <Profile />,
       },
-    ],
+    
+    ]
   },
 
   {
