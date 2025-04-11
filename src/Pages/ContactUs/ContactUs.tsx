@@ -50,9 +50,9 @@ const ContactUs = () => {
             <div className="max-w-7xl mx-auto p-4">
                 {/* Contact Form Section */}
 
-                <div className="flex gap-30">
+                <div className="flex flex-col md:flex-row gap-4 md:gap-30">
                     {/* Adress Info */}
-                    <div className="my-20">
+                    <div className="my-10 md:my-20">
                         <h2 className="text-4xl font-Gilda pb-5">Main Office</h2>
 
                         <div className="space-y-4">
@@ -78,10 +78,10 @@ const ContactUs = () => {
                     </div>
 
                     {/* Contact Form */}
-                    <div className="my-20 flex-1">
+                    <div className="my-10 md:my-20 flex-1">
                         <h2 className="text-4xl font-Gilda pb-5">Send A Message</h2>
                         <form onSubmit={handleSendMessage} className="w-full space-y-4">
-                            <div className="flex gap-x-4">
+                            <div className="flex flex-col  md:flex-row gap-4">
                                 <input type="text" name="name" placeholder="Your Name" className="input py-6 rounded-sm w-full" />
                                 <input type="email" name="email" placeholder="Your Email" className="input py-6 rounded-sm w-full" />
                             </div>
@@ -96,13 +96,13 @@ const ContactUs = () => {
                 <div className="divider"></div>
 
                 {/* Our Stores section */}
-                <div className="my-20">
+                <div className="my-10 md:my-20">
                     <div className="text-center mb-10">
                         <h2 className="text-4xl font-Gilda">Our Stores</h2>
                         <p className="text-base-content text-base">Check our lovely stores worldwide</p>
                     </div>
 
-                    <div className="grid grid-cols-4 gap-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                         {/* Store Card -1 */}
                         <div>
                             <div>
