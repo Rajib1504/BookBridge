@@ -2,12 +2,16 @@
 import Swal from "sweetalert2";
 import contactBG from "../../assets/pageBackground/contactBG.jpg"
 import { MdArrowForward } from "react-icons/md";
+import store1 from "../../assets/stores/store-1.jpg"
+import store2 from "../../assets/stores/store-2.jpg"
+import store3 from "../../assets/stores/store-3.jpg"
+import store4 from "../../assets/stores/store-4.jpg"
 const ContactUs = () => {
 
     const handleSendMessage = (e: React.FormEvent) => {
         e.preventDefault();
         // your logic here
-        
+
         const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -15,15 +19,15 @@ const ContactUs = () => {
             timer: 2000,
             timerProgressBar: true,
             didOpen: (toast) => {
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
             }
-          });
-          Toast.fire({
+        });
+        Toast.fire({
             icon: "success",
             title: "Message sent in successfully"
-          });
-      };
+        });
+    };
 
     return (
         <div className="mt-16">
@@ -42,7 +46,7 @@ const ContactUs = () => {
             </div>
 
 
-            {/* Contact Form Related */}
+
             <div className="max-w-7xl mx-auto p-4">
                 {/* Contact Form Section */}
 
@@ -89,7 +93,67 @@ const ContactUs = () => {
                     </div>
                 </div>
 
+                <div className="divider"></div>
 
+                {/* Our Stores section */}
+                <div className="my-20">
+                    <div className="text-center mb-10">
+                        <h2 className="text-4xl font-Gilda">Our Stores</h2>
+                        <p className="text-base-content text-base">Check our lovely stores worldwide</p>
+                    </div>
+
+                    <div className="grid grid-cols-4 gap-10">
+                        {/* Store Card -1 */}
+                        <div>
+                            <div>
+                                <img className="rounded-sm" src={store1} alt="StoreImage" />
+                            </div>
+                            <div className="font-Inter space-y-2 mt-4">
+                                <h5 className="font-Gilda text-3xl">New York</h5>
+                                <p className="text-base-content text-base">1316 Abbot Kinney Blvd.</p>
+                                <p className="text-base-content text-base">+31123456789</p>
+                            </div>
+                        </div>
+
+                        {/* Store Card -2 */}
+                        <div>
+                            <div>
+                                <img className="rounded-sm" src={store2} alt="StoreImage" />
+                            </div>
+                            <div className="font-Inter space-y-2 mt-4">
+                                <h5 className="font-Gilda text-3xl">Thailand</h5>
+                                <p className="text-base-content text-base">2019 Wandavision Blvd.</p>
+                                <p className="text-base-content text-base">+31123456789</p>
+                            </div>
+                        </div>
+
+                        {/* Store Card -3 */}
+                        <div>
+                            <div>
+                                <img className="rounded-sm" src={store3} alt="StoreImage" />
+                            </div>
+                            <div className="font-Inter space-y-2 mt-4">
+                                <h5 className="font-Gilda text-3xl">France</h5>
+                                <p className="text-base-content text-base">1316 Jack Snyder Blvd.</p>
+                                <p className="text-base-content text-base">+31123456789</p>
+                            </div>
+                        </div>
+
+                        {/* Store Card -4 */}
+                        <div>
+                            <div>
+                                <img className="rounded-sm" src={store4} alt="StoreImage" />
+                            </div>
+                            <div className="font-Inter space-y-2 mt-4">
+                                <h5 className="font-Gilda text-3xl">Japan</h5>
+                                <p className="text-base-content text-base">316 Kim Berly Blvd.</p>
+                                <p className="text-base-content text-base">+31123456789</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
 
         </div>
