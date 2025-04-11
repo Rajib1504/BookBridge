@@ -22,6 +22,7 @@ import Profile from "../Pages/dashboard/admin/Profile";
 import BookDetails from "../Pages/Books/BookDetails";
 import About from "../Pages/About/About";
 import Categories from "../Pages/Categories/Categories";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 const Router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const Router = createBrowserRouter([
       {
         path: "/about-us",
         element: <About />,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs />,
       },
 
       {
