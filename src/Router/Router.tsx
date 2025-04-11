@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Home from "../Pages/Home/Home";
 import DashboardLayout from "../Layout/DashboardLayout";
+
 import AllBooks from "../Pages/dashboard/admin/AllBooks";
 import ManageUsers from "../Pages/dashboard/admin/ManageUsers";
 import TrafficAnalytics from "../Pages/dashboard/admin/TrafficAnalytics";
@@ -73,6 +74,9 @@ const Router = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManageUsers />,
+      },]
+  },
+
       },
       {
         path: "traffic",
@@ -84,6 +88,7 @@ const Router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "/dashboard",
     element: <UserLayout></UserLayout>,
