@@ -3,9 +3,11 @@ import Layout from "../Layout/Layout";
 import Home from "../Pages/Home/Home";
 import DashboardLayout from "../Layout/DashboardLayout";
 
+import AllBooks from "../Pages/dashboard/admin/AllBooks";
+import ManageUsers from "../Pages/dashboard/admin/ManageUsers";
+import TrafficAnalytics from "../Pages/dashboard/admin/TrafficAnalytics";
 
-
-import CreateBook from "../Pages/Dashboard/CreateBook";
+import CreateBook from "../Pages/User/CreateBook";
 
 import UserLayout from "../Layout/UserLayout";
 import DashBoard from "../Pages/User/DashBoard";
@@ -13,8 +15,13 @@ import MyProfile from "../Pages/User/MyProfile";
 import MyBooks from "../Pages/User/MyBooks";
 import MyHistory from "../Pages/User/MyHistory";
 import Payments from "../Pages/User/Payments";
-import AllBooks from "../Pages/Dashboard/admin/AllBooks";
-import ManageUsers from "../Pages/Dashboard/admin/ManageUsers";
+import Books from "../Pages/Books/Books";
+import Login from "../Pages/Authentication/Login";
+import SignUp from "../Pages/Authentication/SignUp";
+import Profile from "../Pages/dashboard/admin/Profile";
+import BookDetails from "../Pages/Books/BookDetails";
+import About from "../Pages/About/About";
+import Categories from "../Pages/Categories/Categories";
 
 const Router = createBrowserRouter([
   {
@@ -24,6 +31,31 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/categories",
+        element: <Categories />,
+      },
+      {
+        path: "/browse-books",
+        element: <Books />,
+      },
+      {
+        path: "/browse-books/:id",
+        element: <BookDetails />,
+      },
+      {
+        path: "/about-us",
+        element: <About />,
+      },
+
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "signup",
+        element: <SignUp />,
       },
     ],
   },
@@ -43,6 +75,18 @@ const Router = createBrowserRouter([
         path: "manage-users",
         element: <ManageUsers />,
       },]
+  },
+
+      },
+      {
+        path: "traffic",
+        element: <TrafficAnalytics />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+    ],
   },
 
   {
