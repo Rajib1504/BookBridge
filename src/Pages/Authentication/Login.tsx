@@ -2,26 +2,42 @@ import { FcGoogle } from "react-icons/fc";
 import loginimg from "../../assets/Images/AuthenticationImage/loginimage.webp";
 import { SiGithub } from "react-icons/si";
 import { FaTwitter } from "react-icons/fa";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
+
 
 type LoginFormInputs = {
   email: string;
   password: string;
 };
 
+
 const Login = () => {
+  const navigate = useNavigate()
+  const {login}=useAuth()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormInputs>();
 
-  const onSubmit = (data: LoginFormInputs) => {
-    console.log("Form submitted:", data);
-    // Add login logic here
+  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
+    login(data.email, data.password)
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+        toast.success(`user Login by ${user.email}`)
+        navigate('/')
+      })
+      .catch((err) => {
+        console.error(err.message);
+        toast.error(err.message)
+        navigate('/')
+      });
   };
-
+  
   return (
     <section className="flex justify-center items-center min-h-screen flex-col">
       <div className="mt-20 flex flex-wrap justify-between items-center w-11/12 mx-auto rounded-lg">

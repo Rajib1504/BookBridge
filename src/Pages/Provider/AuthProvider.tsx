@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import useAxiosPublic from "../../Hooks/axiosPublic";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -13,8 +12,7 @@ import { User } from "firebase/auth";
 import { auth } from "../../Firebase/Firebase.config";
 export const AuthContext = createContext(null);
 
- const AuthProvider = ({ children }) => {
-  // const axiosPublic = useAxiosPublic();
+ const AuthProvider = ({ children }) => { 
   const [user, setUser] = useState<User|null>(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
@@ -35,7 +33,7 @@ export const AuthContext = createContext(null);
     setLoading(true);
     return signOut(auth);
   }; // updagte profile
-  const updateUserProfile = (name, photo) => {
+  const updateUserProfile = (name:string, photo:string) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,

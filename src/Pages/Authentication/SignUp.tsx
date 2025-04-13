@@ -34,7 +34,7 @@ const SignUp = () => {
         // console.log(user)
         updateUserProfile(fullName, profile)
           .then(() => {
-            const userInfo = { name: fullName, email, profile };
+            const userInfo = { name: fullName, email, profile,role:'user' };
             axiosPublic.post("/users", userInfo).then((res) => {
               if (res.data.insertedId) {
                 console.log(user)
@@ -75,7 +75,7 @@ const SignUp = () => {
           </h1>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-6 w-full max-w-md  p-6 rounded-lg "
+            className="flex flex-col gap-4 w-full max-w-md  p-6 rounded-lg "
           >
             <div className="flex gap-4">
               <input
@@ -83,21 +83,21 @@ const SignUp = () => {
                 placeholder="First Name"
                 className="w-1/2  px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
                 {...register("FirstName", { required: "Name is Required" })}
-              />
-              {errors.FirstName && <p>{errors.FirstName.message}</p>}
+                />
+                {/* {errors.FirstName && <p className="text-red-500">{errors.FirstName.message}</p>} */}
               <input
                 {...register("LastName", { required: "Last name is Required" })}
                 placeholder="Last Name"
                 className="w-1/2  px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
               />
-              {errors.LastName && <p>{errors.LastName.message}</p>}
+              {/* {errors.LastName && <p className="text-red-500">{errors.LastName.message}</p>} */}
             </div>
             <input
               {...register("email", { required: "email is Required" })}
               placeholder="Email Address"
               className="  px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
             />
-            {errors.email && <p>{errors.email.message}</p>}
+            {errors.email && <p className="text-red-500">{errors.email.message}</p>}
             <input
             type="password"
             {...register("password", {
@@ -110,7 +110,19 @@ const SignUp = () => {
               placeholder="Password"
               className="  px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
             />
-            {errors.password && <p>{errors.password.message}</p>}
+            {errors.password?.type === "required" && (
+                    <p className="text-red-500">Password is required</p>
+                  )}
+                  {errors.password?.type === "minLength" && (
+                    <p className="text-red-500">Password must be lest 6</p>
+                  )}
+                  {errors.password?.type === "pattern" && (
+                    <p className="text-red-500">
+                      Password must contain at least one special charecter,
+                      least 8 characters,one lowercase,one uppercase ,one digit
+                    </p>
+                  )}
+
             <input
             type="url"
               {...register("profile", {
@@ -119,7 +131,7 @@ const SignUp = () => {
               placeholder="Profile Image URL"
               className="  px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
             />
-            {errors.profile && <p>{errors.profile.message}</p>}
+            {errors.profile && <p className="text-red-500">{errors.profile.message}</p>}
             <button
               type="submit"
               className="mt-3   bg-[#FFB237] text-white py-2 rounded-lg hover:bg-[#d62928] transition font-semibold"
