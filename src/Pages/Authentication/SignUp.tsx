@@ -1,16 +1,14 @@
-import { FcGoogle } from "react-icons/fc";
 import loginimg from "../../assets/Images/AuthenticationImage/loginimage.webp";
-import { SiGithub } from "react-icons/si";
-import { FaTwitter } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../Hooks/axiosPublic";
 
 
 const SignUp = () => {
-  const {googlelogin,Register}=useAuth()
+  const axiosPublic = useAxiosPublic();
+  const {Register,updateUserProfile}=useAuth()
   const navigate = useNavigate()
 
   type FormData = {
@@ -23,39 +21,39 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>();
   const onSubmit = async (data: FormData) => {
-    const {email,password}=data
- console.log("clicked")
- Register(email,password).then((res)=>{
-  console.log(res.user)
- toast.success(`wellcome your registration ${res.user.email}`)
- navigate('/')
- }).catch((err)=>{
-  toast.error(`Opps.. ${err.message}`);
- })
+    const { email, password, FirstName, LastName, profile } = data;
+    const fullName = `${FirstName} ${LastName}`;
+// console.log(data)
+    Register(email, password)
+      .then((res) => {
+        const user = res.user;
+        // console.log(user)
+        updateUserProfile(fullName, profile)
+          .then(() => {
+            const userInfo = { name: fullName, email, profile };
+            axiosPublic.post("/users", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                console.log(user)
+                toast.success(`Sign Up Successful: ${user.email}`)
+                navigate("/");
+                reset();
+              }
+            });
+          })
+          .catch((err) => {
+            toast.error("Profile update failed:", err.message);
+          });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(`${error.message}`)
+      });
   };
 
-const handlegoogleSignin=()=>{
-  console.log("clicked")
-  googlelogin().then((res)=>{
-    const userInfo = {
-      Name: res.user?.displayName,
-    email: res.user?.email,
-  }
-    console.log(userInfo)
-    Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: `wellcome ${userInfo.Name} `,
-      showConfirmButton: false,
-      timer: 1000
-    });
-    navigate('/');
-})
-.catch((err)=>console.log(err.message))
-} 
 
 
   return (
@@ -102,12 +100,19 @@ const handlegoogleSignin=()=>{
             {errors.email && <p>{errors.email.message}</p>}
             <input
             type="password"
-              {...register("password", { required: "password is Required" })}
+            {...register("password", {
+              required: true,
+              minLength: 6,
+              maxLength: 12,
+              pattern:
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+            })}
               placeholder="Password"
               className="  px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
             />
             {errors.password && <p>{errors.password.message}</p>}
             <input
+            type="url"
               {...register("profile", {
                 required: "profile image is Required",
               })}
@@ -124,12 +129,7 @@ const handlegoogleSignin=()=>{
           </form>
           <div className="my-6 text-gray-600">Or Sign Up With</div>
           <div className="flex justify-center items-center gap-6">
-            <FcGoogle
-              onClick={handlegoogleSignin}
-              className="text-4xl cursor-pointer"
-            />
-            <SiGithub className="text-4xl cursor-pointer" />
-            <FaTwitter className="text-4xl text-sky-400 cursor-pointer" />
+            
           </div>
         </aside>
       </div>

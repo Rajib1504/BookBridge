@@ -40,7 +40,7 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar }) => {
     },
   ];
   return (
-    <aside className="w-64 bg-base-300 text-black font-Gilda h-screen shadow-lg flex flex-col">
+    <aside className="w-64  bg-base-300 text-black font-Gilda h-full shadow-lg flex flex-col">
       {/* Header Section */}
       <div className="p-6 text-center flex lg:block justify-between">
         <div>

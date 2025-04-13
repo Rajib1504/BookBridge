@@ -32,7 +32,7 @@ const Navbar = () => {
         <NavLink to="/about">Categories</NavLink>
       </li>
       <li>
-        <NavLink to="/shop">Browse Books</NavLink>
+        <NavLink to="/browse-books">Browse Books</NavLink>
       </li>
       <li>
         <NavLink to="/shop">Book Listing</NavLink>
@@ -41,7 +41,7 @@ const Navbar = () => {
         <NavLink to="/blogs">My Books</NavLink>
       </li>
       <li>
-        <NavLink to="/blogs">About Us</NavLink>
+        <NavLink to="/about-us">About Us</NavLink>
       </li>
       <li>
         <NavLink to="/dashboard/admin">Dashboard</NavLink>
@@ -65,9 +65,7 @@ const Navbar = () => {
           </Link>
 
           <div className="hidden lg:flex">
-            <ul
-              className="menu menu-horizontal font-bold text-sm font-Inter"
-            >
+            <ul className="menu menu-horizontal font-bold text-sm font-Inter">
               {links}
             </ul>
           </div>
@@ -180,7 +178,7 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
               aria-label="Toggle Profile Dropdown"
             >
-              <div className="w-9 h-9 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 bg-gray-200">
+              <div className="w-9 h-9 flex  items-center justify-center rounded-full overflow-hidden border border-gray-300 bg-gray-200">
                 <img src={userImage} alt="" className="object-cover" />
                 {/* {user && user.email ? (
                   <img
@@ -198,13 +196,12 @@ const Navbar = () => {
             <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
               {/* Username (non-clickable) */}
               <li>
-                {/* <div
-                    id="name"
-                    className="justify-between text-base-content font-semibold"
-                  >
-                    {user?.email ? user.displayName : ""}
-                  </div> */}
+                Profile
               </li>
+              <Link to={'/login'}>
+                Login
+              </Link>
+             
 
               {/* Other Dropdown Items */}
               <li>

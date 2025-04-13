@@ -7,13 +7,14 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { User } from "firebase/auth";
 import { auth } from "../../Firebase/Firebase.config";
 export const AuthContext = createContext(null);
 
  const AuthProvider = ({ children }) => {
-  const axiosPublic = useAxiosPublic();
+  // const axiosPublic = useAxiosPublic();
   const [user, setUser] = useState<User|null>(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
@@ -33,14 +34,31 @@ export const AuthContext = createContext(null);
   const logout = () => {
     setLoading(true);
     return signOut(auth);
+  }; // updagte profile
+  const updateUserProfile = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser)
-      } else {
-        setUser(null)
-      }
+        // if (currentUser) {
+        //   //get token and store Client
+        //   const userInfo = { email: currentUser.email }; // take the email from the current login user
+        //   // axiosPublic.post("/jwt", userInfo).then((res) => {
+        //   //   // console.log(res.data.token);
+        //   //   if (res.data.token) {
+        //   //     localStorage.setItem("access-token", res.data.token);
+        //   //   }
+        //   // });
+        // } else {
+        //   // TODO: remove GiToken(if token stored in the clint side: Local Storage,caching,in memory )for cookie we need to remove it form the backend
+        //   localStorage.removeItem("access-token"); // we will remove the token
+        // }
+      } 
       setLoading(false);
     });
     return () => {
@@ -56,6 +74,7 @@ export const AuthContext = createContext(null);
     Register,
     login,
     logout,
+    updateUserProfile
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
