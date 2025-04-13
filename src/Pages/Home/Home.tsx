@@ -2,6 +2,7 @@
 import Banner from "../../Components/Banner";
 import BestSeller from "../../Components/BestSeller";
 import Discount from "../../Components/Discount";
+import ShopbyBrands from "../../components/ShopbyBrands";
 import ShopByCategory from "../../Components/ShopByCategory";
 import Testimonial from "../../components/Testimonials";
 import TopAuther from "../../Components/TopAuther";
@@ -15,8 +16,8 @@ const Home = () => {
                 <Discount/>
                 <ShopByCategory/>
                 <TopAuther/>
-                <Testimonial/>
-               
+                <ShopbyBrands></ShopbyBrands>
+                <Testimonial/>              
             </div>
       );
 };

@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Home from "../Pages/Home/Home";
 import DashboardLayout from "../Layout/DashboardLayout";
+
 import AllBooks from "../Pages/dashboard/admin/AllBooks";
 import ManageUsers from "../Pages/dashboard/admin/ManageUsers";
 import TrafficAnalytics from "../Pages/dashboard/admin/TrafficAnalytics";
@@ -20,6 +21,8 @@ import SignUp from "../Pages/Authentication/SignUp";
 import Profile from "../Pages/dashboard/admin/Profile";
 import BookDetails from "../Pages/Books/BookDetails";
 import About from "../Pages/About/About";
+import Categories from "../Pages/Categories/Categories";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 const Router = createBrowserRouter([
   {
@@ -29,6 +32,10 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/categories",
+        element: <Categories />,
       },
       {
         path: "/browse-books",
@@ -41,6 +48,10 @@ const Router = createBrowserRouter([
       {
         path: "/about-us",
         element: <About />,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs />,
       },
 
       {
@@ -69,6 +80,7 @@ const Router = createBrowserRouter([
         path: "manage-users",
         element: <ManageUsers />,
       },
+
       {
         path: "traffic",
         element: <TrafficAnalytics />,
@@ -77,8 +89,10 @@ const Router = createBrowserRouter([
         path: "profile",
         element: <Profile />,
       },
-    ],
+    
+    ]
   },
+
   {
     path: "/dashboard",
     element: <UserLayout></UserLayout>,
