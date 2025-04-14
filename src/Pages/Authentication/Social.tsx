@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { SiGithub } from "react-icons/si";
 import { FaTwitter } from "react-icons/fa";
 
-const SocialLogin = () => {
+const Social = () => {
   const axiosPublic = useAxiosPublic();
   const { googlelogin } = useAuth();
   const navigate = useNavigate();
@@ -39,4 +39,4 @@ const SocialLogin = () => {
   );
 };
 
-export default SocialLogin;
+export default Social;
