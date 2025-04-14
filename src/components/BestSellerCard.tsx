@@ -5,6 +5,10 @@ import { Zoom } from "react-awesome-reveal";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { LuDollarSign } from "react-icons/lu";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../Hooks/axiosSecure";
+import toast from "react-hot-toast";
+import { GiMailShirt } from "react-icons/gi";
+import useAuth from "../Hooks/useAuth";
 
 type Books = {
   availability: string;
@@ -25,8 +29,28 @@ type Books = {
 type BestSellerCardProps = {
   book: Books;
 };
+
+const axiosSecure = useAxiosSecure();
+// const { user } = useAuth();
+// console.log(user);
+
 const BestSellerCard = ({ book }: BestSellerCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  // add to cart
+  const handleAddtoCart = (bookId: number) => {
+    const cartInfo = {
+      bookId: bookId,
+      quantity: 1,
+      userEmail: "najmul.nh.shaon@gmail.com",
+    };
+    axiosSecure.post("/api/cart", cartInfo).then((res) => {
+      console.log(res.data);
+      if (res.data.insertedId) {
+        toast.success("Added to cart.");
+      }
+    });
+  };
 
   return (
     <div
@@ -45,7 +69,10 @@ const BestSellerCard = ({ book }: BestSellerCardProps) => {
             <>
               <Zoom duration={500}>
                 <div className="hidden md:block absolute w-full bottom-8 px-4">
-                  <button className="w-full text-white btn uppercase tracking-widest text-xs bg-[#201c1c] border-0 hover:bg-[#d62928]">
+                  <button
+                    onClick={() => handleAddtoCart(book?.bookId)}
+                    className="w-full text-white btn uppercase tracking-widest text-xs bg-[#201c1c] border-0 hover:bg-[#d62928]"
+                  >
                     Add to Cart{" "}
                     <HiOutlineShoppingBag className="text-lg"></HiOutlineShoppingBag>{" "}
                   </button>
