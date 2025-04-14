@@ -100,7 +100,7 @@ const Testimonial = () => {
   ];
 
   return (
-    <div className="bg-[#F4F4EC] flex flex-col justify-center items-center py-10">
+    <div className="bg-white flex flex-col justify-center items-center py-10">
       <div>
         <img src={Comma} alt="" />
       </div>
