@@ -2,6 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import useAxiosSecure from "../../Hooks/axiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 type Inputs = {
   availability: string;
@@ -25,6 +26,8 @@ const imgHostingApi = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 export default function CreateBook() {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
+
+  const { user } = useAuth();
 
   // import from use form
   const {
@@ -262,7 +265,7 @@ export default function CreateBook() {
             <div>
               <label className="block font-medium">Name</label>
               <input
-                defaultValue="Najmul Shaon"
+                defaultValue={user?.displayName}
                 readOnly
                 {...register("ownerName", {
                   required: "Your name is required",
@@ -276,7 +279,7 @@ export default function CreateBook() {
             <div>
               <label className="block font-medium">Email</label>
               <input
-                defaultValue="najmul.nh.shaon@gmail.com"
+                defaultValue={user?.email}
                 readOnly
                 type="email"
                 {...register("contactEmail", { required: "Email is required" })}
