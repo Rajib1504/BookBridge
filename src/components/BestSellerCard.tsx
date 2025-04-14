@@ -9,6 +9,7 @@ import useAxiosSecure from "../Hooks/axiosSecure";
 import toast from "react-hot-toast";
 import { GiMailShirt } from "react-icons/gi";
 import useAuth from "../Hooks/useAuth";
+import useCart from "../Hooks/useCart";
 
 type Books = {
   availability: string;
@@ -30,23 +31,26 @@ type BestSellerCardProps = {
   book: Books;
 };
 
-const axiosSecure = useAxiosSecure();
-// const { user } = useAuth();
-// console.log(user);
-
 const BestSellerCard = ({ book }: BestSellerCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const { cartsInfoRefetch } = useCart();
+  console.log(user?.email);
 
   // add to cart
   const handleAddtoCart = (bookId: number) => {
     const cartInfo = {
       bookId: bookId,
       quantity: 1,
-      userEmail: "najmul.nh.shaon@gmail.com",
+      userEmail: user?.email,
+      status: "inCart",
     };
     axiosSecure.post("/api/cart", cartInfo).then((res) => {
       console.log(res.data);
       if (res.data.insertedId) {
+        cartsInfoRefetch();
         toast.success("Added to cart.");
       }
     });

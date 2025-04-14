@@ -1,65 +1,85 @@
-import { useState } from "react";
+import { FaRegTrashCan } from "react-icons/fa6";
 import { LuDollarSign } from "react-icons/lu";
 import { RxCross1 } from "react-icons/rx";
+import useAxiosSecure from "../../Hooks/axiosSecure";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 type CartCardProps = {
   serial: number;
   cartInfo: any;
-  setTotal: React.Dispatch<React.SetStateAction<Number>>;
+  quantity: number;
+  cartsInfoRefetch: boolean;
+  onQuantityChange: (newQty: number) => void;
 };
 
-const CartCard = ({ cartInfo, serial, setTotal }: CartCardProps) => {
-  const [count, setCount] = useState(cartInfo?.quantity);
-
-  // const totalPrice =
-
-  // increase/decrease handler
+const CartCard = ({
+  cartInfo,
+  serial,
+  quantity,
+  onQuantityChange,
+  cartsInfoRefetch,
+}: CartCardProps) => {
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
   const handleDecrease = () => {
-    if (count > 1) setCount(count - 1);
+    if (quantity > 1) onQuantityChange(quantity - 1);
   };
 
   const handleIncrease = () => {
-    setCount(count + 1);
+    onQuantityChange(quantity + 1);
+  };
+
+  const handleDelete = () => {
+    console.log(cartInfo?.cartId);
+    axiosSecure
+      .patch(
+        `/api/delete/cart?cartId=${cartInfo?.cartId}&userEmail=${user?.email}`
+      )
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          cartsInfoRefetch();
+          toast.success("Item deleted.");
+        }
+      })
+      .catch(() => {
+        toast.error("Something went wrong! Try again.");
+      });
   };
 
   return (
-    <div className="flex gap-4 items-stretch">
-      <p>{serial + 1}</p>
-      <figure className="w-20 h-full">
+    <div className="grid grid-cols-11 gap-4 items-stretch">
+      <p className="col-span-1">{serial + 1}</p>
+      <figure className="w-full h-full col-span-4">
         <img
           className="w-full h-full object-cover rounded-md"
           src={cartInfo?.bookDetails[0]?.coverImage}
           alt="book img"
         />
       </figure>
-      <div className="space-y-1 h-full">
+
+      <div className="space-y-1 h-full col-span-5">
         <h3 className="text-lg">{cartInfo?.bookDetails[0]?.title}</h3>
+
         <div className="flex items-center gap-2">
           <div className="join">
             <button onClick={handleDecrease} className="btn btn-xs join-item">
               -
             </button>
-            <button className="btn btn-xs join-item">{count}</button>
+            <button className="btn btn-xs join-item">{quantity}</button>
             <button onClick={handleIncrease} className="btn btn-xs join-item">
-              {" "}
               +
             </button>
           </div>
-          <div>
-            <RxCross1 />{" "}
-          </div>
-          <div>
-            <p className="flex items-center justify-center text-[#d62928]">
-              {" "}
-              <span>
-                <LuDollarSign />
-              </span>
-              {cartInfo?.bookDetails[0]?.rentalPrice
-                ? cartInfo?.bookDetails[0]?.rentalPrice
-                : 0}
-            </p>
-          </div>
+          <RxCross1 />
+          <p className="flex items-center text-[#d62928]">
+            <LuDollarSign />
+            {cartInfo?.bookDetails[0]?.rentalPrice || 0}
+          </p>
         </div>
+      </div>
+      <div onClick={handleDelete} className="col-span-1">
+        <FaRegTrashCan className="text-[#d62928] cursor-pointer"></FaRegTrashCan>
       </div>
     </div>
   );

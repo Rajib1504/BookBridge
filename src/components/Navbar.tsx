@@ -189,7 +189,7 @@ const Navbar = () => {
                 aria-label="close sidebar"
                 className="drawer-overlay"
               ></label>
-              <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+              <ul className="menu bg-base-200 text-base-content min-h-full w-96 p-4">
                 {/* Cart Sidebar Content */}
                 {/* <li>
                   <a>Your Cart Item 1</a>
