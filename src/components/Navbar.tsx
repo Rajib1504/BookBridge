@@ -5,11 +5,12 @@ import { FaSearch } from "react-icons/fa";
 import { PiBellSimpleRinging } from "react-icons/pi";
 import { FaCartShopping } from "react-icons/fa6";
 import Cart from "../Pages/Cart/Cart";
-import useAxiosPublic from './../Hooks/axiosPublic';
+import useAxiosPublic from "./../Hooks/axiosPublic";
+import useCartCount from "../Hooks/useCartCount";
 
 const Navbar = () => {
-  const axiiospublic = useAxiosPublic()
-  
+  const axiiospublic = useAxiosPublic();
+
   // const [theme, setTheme] = useState<"light" | "dark">(() => {
   //   // Get the theme from localStorage or default to 'light'
   //   return (localStorage.getItem("theme") as "light" | "dark") || "light";
@@ -25,7 +26,8 @@ const Navbar = () => {
   // };
 
   const notificationCount = 3; // Example notification count
-  const cartCount = 0; // Example cart count
+  // const cartCount = 0; // Example cart count
+  const { cartCount } = useCartCount();
 
   const links = (
     <>
@@ -207,7 +209,6 @@ const Navbar = () => {
           </div>
 
           {/* cart details end */}
-
 
           {/* Profile Dropdown */}
           <div
