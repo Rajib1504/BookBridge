@@ -4,7 +4,6 @@ import userImage from "../assets/user.webp";
 import { FaSearch } from "react-icons/fa";
 import { PiBellSimpleRinging } from "react-icons/pi";
 import { FaCartShopping } from "react-icons/fa6";
-import { useState } from "react";
 import Cart from "../Pages/Cart/Cart";
 
 const Navbar = () => {
@@ -24,12 +23,6 @@ const Navbar = () => {
 
   const notificationCount = 3; // Example notification count
   const cartCount = 0; // Example cart count
-  // cart management area
-  const [isCartView, setIsCartView] = useState(true);
-  console.log(isCartView);
-  const toggleCart = () => {
-    setIsCartView(!isCartView);
-  };
 
   const links = (
     <>
@@ -172,54 +165,19 @@ const Navbar = () => {
               <Cart isCartView={isCartView} toggleCart={toggleCart}></Cart>
             </>
           )} */}
-          {/* <div className="drawer drawer-end">
-            <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content"> */}
-          {/* Page content here */}
-          {/* <label
-                htmlFor="my-drawer-4"
-                className="drawer-button relative text-2xl cursor-pointer"
-              >
-                <FaCartShopping /> */}
-          {/* Cart badge */}
-          {/* {cartCount > 0 && (
-                  <span className="absolute top-0 right-0 text-xs font-semibold text-white bg-blue-500 rounded-full w-5 h-5 flex items-center justify-center">
-                    {cartCount}
-                  </span>
-                )}
-              </label> */}
-          {/* </div>
-            <div className="drawer-side">
-              <label
-                htmlFor="my-drawer-4"
-                aria-label="close sidebar"
-                className="drawer-overlay"
-              ></label>
-              <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4"> */}
-          {/* Sidebar content here */}
-          {/* <li>
-                  <a>Sidebar Item 1</a>
-                </li>
-                <li>
-                  <a>Sidebar Item 2</a>
-                </li>
-                <Cart isCartView={isCartView} toggleCart={toggleCart}></Cart>
-              </ul>
-            </div>
-          </div> */}
 
           {/* ******************  */}
           <div className="drawer drawer-end z-20">
             <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content">
+            <div className="drawer-content h-6">
               {/* Cart Icon as Drawer Trigger */}
               <label
                 htmlFor="cart-drawer"
-                className="relative text-2xl p-2 cursor-pointer"
+                className="relative text-2xl cursor-pointer"
               >
                 <FaCartShopping />
                 {cartCount >= 0 && (
-                  <span className="absolute top-8 left-3 text-xs font-semibold text-white bg-blue-500 rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute -top-2 left-3 text-xs font-semibold text-white bg-blue-500 rounded-full w-5 h-5 flex items-center justify-center">
                     {cartCount}
                   </span>
                 )}

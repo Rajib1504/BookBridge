@@ -24,7 +24,6 @@ const BookDetails = () => {
     },
   });
 
-  console.log(specificBookDetails);
 
   const [count, setCount] = useState(1);
 
