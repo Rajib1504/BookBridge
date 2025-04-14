@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { GiMailShirt } from "react-icons/gi";
 import useAuth from "../Hooks/useAuth";
 import useCart from "../Hooks/useCart";
+import useCartCount from "../Hooks/useCartCount";
 
 type Books = {
   availability: string;
@@ -37,6 +38,7 @@ const BestSellerCard = ({ book }: BestSellerCardProps) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { cartsInfoRefetch } = useCart();
+  const { cartCountRefetch } = useCartCount();
   console.log(user?.email);
 
   // add to cart
@@ -51,6 +53,7 @@ const BestSellerCard = ({ book }: BestSellerCardProps) => {
       console.log(res.data);
       if (res.data.insertedId) {
         cartsInfoRefetch();
+        cartCountRefetch();
         toast.success("Added to cart.");
       }
     });
