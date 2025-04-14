@@ -16,8 +16,10 @@ const SocialLogin = () => {
         const userInfo = {
           name: res.user?.displayName,
           email: res.user?.email,
+        profile: res.user?.photoURL,
+        role: 'user'
         };
-
+        console.log(userInfo);
         axiosPublic.post("/users", userInfo).then(() => {
           toast.success(`Welcome ${userInfo.name}`);
           navigate("/");
