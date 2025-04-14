@@ -25,7 +25,6 @@ const BookDetails = () => {
     },
   });
 
-  console.log(specificBookDetails);
 
   const [count, setCount] = useState(1);
 
@@ -110,7 +109,12 @@ const BookDetails = () => {
             {/* add to cart area  */}
             <div className="w-full">
               <button
-                onClick={() => handleAddtoCart(specificBookDetails?.bookId)}
+                onClick={() =>
+                  handleAddtoCart(
+                    specificBookDetails?.bookId,
+                    specificBookDetails?.rentalPrice
+                  )
+                }
                 className="w-full text-white btn uppercase tracking-widest text-xs bg-[#201c1c] border-0 hover:bg-[#d62928]"
               >
                 Add to Cart{" "}
