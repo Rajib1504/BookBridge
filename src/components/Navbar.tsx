@@ -4,8 +4,11 @@ import userImage from "../assets/user.webp";
 import { FaSearch } from "react-icons/fa";
 import { PiBellSimpleRinging } from "react-icons/pi";
 import { FaCartShopping } from "react-icons/fa6";
+import useAxiosPublic from './../Hooks/axiosPublic';
 
 const Navbar = () => {
+  const axiiospublic = useAxiosPublic()
+  
   // const [theme, setTheme] = useState<"light" | "dark">(() => {
   //   // Get the theme from localStorage or default to 'light'
   //   return (localStorage.getItem("theme") as "light" | "dark") || "light";
@@ -158,18 +161,6 @@ const Navbar = () => {
             )}
           </button>
 
-          {/* Theme Toggle */}
-          {/* <button
-            className="p-2 text-2xl cursor-pointer"
-            onClick={toggleTheme}
-            title="Toggle Theme"
-          >
-            {theme === "light" ? (
-              <FaMoon className="text-gray-300 transition-transform duration-300 hover:scale-110" />
-            ) : (
-              <FaSun className="text-yellow-500 transition-transform duration-300 hover:scale-110" />
-            )}
-          </button> */}
 
           {/* Profile Dropdown */}
           <div
