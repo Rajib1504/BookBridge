@@ -16,7 +16,6 @@ const Cart = () => {
   const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
   const [total, setTotal] = useState(0);
 
-
   // Initialize quantities
   useEffect(() => {
     if (cartsInfo.length > 0) {
@@ -53,6 +52,24 @@ const Cart = () => {
       .catch(() => {
         toast.error("Something went wrong! Try again.");
       });
+  };
+
+  const hanldeCheckout = (cartsInfo: any) => {
+    const cartIds = cartsInfo.map((cartInfo: any) => cartInfo.cartId);
+    const bookIds = cartsInfo.map((cartInfo: any) => cartInfo.bookId);
+
+    const checkoutInfo = {
+      cartIds: cartIds,
+      bookIds: bookIds,
+      userEmail: user?.email,
+      userName: user?.displayName,
+    };
+    axiosSecure
+      .post("/api/rent", checkoutInfo)
+      .then((res) => {
+        window.location.replace(res.data.url);
+      })
+      .catch(() => toast.error("Something went wrong. Try again."));
   };
 
   return (
@@ -92,6 +109,7 @@ const Cart = () => {
 
       <div className="w-full bottom-8 px-4">
         <button
+          onClick={() => hanldeCheckout(cartsInfo)}
           className={`w-full text-white btn uppercase tracking-widest text-xs bg-[#201c1c] border-0 hover:bg-[#d62928] ${
             cartsInfo.length <= 0 && "btn-disabled"
           }`}

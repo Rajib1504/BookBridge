@@ -34,7 +34,6 @@ const CartCard = ({
   };
 
   const handleDelete = () => {
-    console.log(cartInfo?.cartId);
     axiosSecure
       .patch(
         `/api/delete/cart?cartId=${cartInfo?.cartId}&userEmail=${user?.email}`

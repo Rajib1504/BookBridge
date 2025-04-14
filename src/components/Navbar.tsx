@@ -148,24 +148,7 @@ const Navbar = () => {
           </button>
 
           {/* Cart icon */}
-          {/* <button className="relative text-2xl p-2 cursor-pointer">
-            <FaCartShopping /> */}
-          {/* Cart badge */}
-          {/* {cartCount > 0 && (
-              <span className="absolute top-0 right-0 text-xs font-semibold text-white bg-blue-500 rounded-full w-5 h-5 flex items-center justify-center">
-                {cartCount}
-              </span>
-            )}
-          </button> */}
 
-          {/* cart details start */}
-          {/* {isCartView && (
-            <>
-              <Cart isCartView={isCartView} toggleCart={toggleCart}></Cart>
-            </>
-          )} */}
-
-          {/* ******************  */}
           <div className="drawer drawer-end z-20">
             <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content h-6">
