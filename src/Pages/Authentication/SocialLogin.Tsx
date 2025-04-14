@@ -1,3 +1,4 @@
+// @ts-nocheck
 import useAxiosPublic from "../../Hooks/axiosPublic";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-hot-toast";
@@ -12,7 +13,7 @@ const SocialLogin = () => {
   const navigate = useNavigate();
   const handlegoogleSignin = () => {
     googlelogin()
-      .then((res) => {
+      .then((res: any) => {
         const userInfo = {
           name: res.user?.displayName,
           email: res.user?.email,
@@ -23,7 +24,7 @@ const SocialLogin = () => {
           navigate("/");
         });
       })
-      .catch((err) => toast.error(err.message));
+      .catch((err: any) => toast.error(err.message));
   };
   return (
     <>

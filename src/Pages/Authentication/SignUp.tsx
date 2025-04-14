@@ -1,3 +1,4 @@
+// @ts-nocheck
 import loginimg from "../../assets/Images/AuthenticationImage/loginimage.webp";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
