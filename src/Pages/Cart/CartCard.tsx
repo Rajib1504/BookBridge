@@ -4,12 +4,12 @@ import { RxCross1 } from "react-icons/rx";
 import useAxiosSecure from "../../Hooks/axiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import useCartCount from "../../Hooks/useCartCount";
 
 type CartCardProps = {
   serial: number;
   cartInfo: any;
   quantity: number;
-  cartsInfoRefetch: boolean;
   onQuantityChange: (newQty: number) => void;
 };
 
@@ -22,6 +22,9 @@ const CartCard = ({
 }: CartCardProps) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+
+  const { cartCountRefetch } = useCartCount();
+
   const handleDecrease = () => {
     if (quantity > 1) onQuantityChange(quantity - 1);
   };
@@ -39,6 +42,7 @@ const CartCard = ({
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           cartsInfoRefetch();
+          cartCountRefetch();
           toast.success("Item deleted.");
         }
       })

@@ -5,12 +5,7 @@ import { Zoom } from "react-awesome-reveal";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { LuDollarSign } from "react-icons/lu";
 import { Link } from "react-router-dom";
-import useAxiosSecure from "../Hooks/axiosSecure";
-import toast from "react-hot-toast";
-import { GiMailShirt } from "react-icons/gi";
-import useAuth from "../Hooks/useAuth";
-import useCart from "../Hooks/useCart";
-import useCartCount from "../Hooks/useCartCount";
+import useAddToCart from "../Hooks/useAddToCart";
 
 type Books = {
   availability: string;
@@ -35,29 +30,7 @@ type BestSellerCardProps = {
 const BestSellerCard = ({ book }: BestSellerCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
-  const { cartsInfoRefetch } = useCart();
-  const { cartCountRefetch } = useCartCount();
-  console.log(user?.email);
-
-  // add to cart
-  const handleAddtoCart = (bookId: number) => {
-    const cartInfo = {
-      bookId: bookId,
-      quantity: 1,
-      userEmail: user?.email,
-      status: "inCart",
-    };
-    axiosSecure.post("/api/cart", cartInfo).then((res) => {
-      console.log(res.data);
-      if (res.data.insertedId) {
-        cartsInfoRefetch();
-        cartCountRefetch();
-        toast.success("Added to cart.");
-      }
-    });
-  };
+  const handleAddtoCart = useAddToCart();
 
   return (
     <div
