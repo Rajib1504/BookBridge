@@ -3,7 +3,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
-import SocialLogin from "./SocialLogin";
+import Social from "./Social";
+
 
 
 type LoginFormInputs = {
@@ -88,7 +89,7 @@ const Login = () => {
           <div className="divider m-8">Or</div>
 
           <div className="flex justify-center items-center gap-5">
-           <SocialLogin/>
+           <Social/>
           </div>
           <span className="flex justify-center items-center mt-7 gap-1">
             Create an 
