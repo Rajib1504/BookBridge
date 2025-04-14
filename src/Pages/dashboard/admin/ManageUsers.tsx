@@ -95,7 +95,29 @@ const ManageUsers: React.FC = () => {
   };
 
   const handleDelete = (email: string) => {
-    console.log(`Deleting user with ID: ${email}`);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axiosSecure.delete(`/delete/user/${email}`);
+          Swal.fire({
+            title: "Deleted!",
+            text: "User has been deleted.",
+            icon: "success",
+          });
+          refetch();
+        } catch (error) {
+          console.error("Failed to delete user.", error);
+        }
+      }
+    });
   };
 
   return (
