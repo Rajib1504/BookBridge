@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { useState } from "react";
@@ -52,7 +51,7 @@ const BestSellerCard = ({ book }: BestSellerCardProps) => {
                 <div className="hidden md:block absolute w-full bottom-8 px-4">
                   <button
                     onClick={() =>
-                      handleAddtoCart(book?.bookId, book?.rentalPrice)
+                      handleAddtoCart(book!.bookId!, book!.rentalPrice!)
                     }
                     className="w-full text-white btn uppercase tracking-widest text-xs bg-[#201c1c] border-0 hover:bg-[#d62928]"
                   >
