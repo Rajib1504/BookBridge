@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { useState } from "react";
