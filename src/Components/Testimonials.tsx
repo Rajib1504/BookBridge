@@ -1,36 +1,56 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import styled from "styled-components";
-import Comma from "../assets/comma.png"
+import Comma from "../assets/comma.png";
 
 const TestimonialContainer = styled.div`
   max-width: 600px;
+  width: 90%;
   min-height: 230px;
   margin: 2rem auto;
   font-family: "Georgia", serif;
   padding: 0 1rem;
 
-  .carousel carousel-slider{
-  min-height: 100%;
-  margin: 0px;
-  padding: 0px;
+  .carousel-root {
+    min-height: 230px;
+    display: flex;
+    flex-direction: column;
   }
-  .carousel-root{
-  min-height: 230px;
-  display: flex;
-  }
-  
-  /* Custom styles for carousel dots */
 
+  .carousel.carousel-slider {
+    margin: 0;
+    padding: 0;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    background: #aaa;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .dot.selected {
+    background: #333;
+  }
+
+  @media (max-width: 768px) {
+    min-height: 200px;
+    .carousel-root {
+      min-height: 200px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    min-height: 180px;
+    .carousel-root {
+      min-height: 180px;
+    }
+  }
 `;
-// const PublicationInfo = styled.p`
-//   font-size: 0.9rem;
-//   color: #333;
-//   line-height: 1.6;
-//   text-align: center;
-//   margin-bottom: 2.5rem;
-//   font-weight: 300;
-// `;
 
 const TestimonialContent = styled.div`
   display: flex;
@@ -40,18 +60,28 @@ const TestimonialContent = styled.div`
 
 const TestimonialText = styled.p`
   font-size: 1.1rem;
-  line-height: 1.8;
+  line-height: 1.6;
   color: #333;
   margin-bottom: 1.5rem;
   text-align: center;
   font-style: italic;
-  max-width: 500px;
+  max-width: 90%;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.95rem;
+  }
 `;
 
 const AuthorInfo = styled.div`
   display: flex;
   align-items: center;
   margin-top: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const AuthorName = styled.p`
@@ -75,6 +105,10 @@ const Divider = styled.div`
   background-color: #999;
   margin: 0 0.8rem;
   transform: rotate(15deg);
+
+  @media (max-width: 480px) {
+    margin: 0 0.5rem;
+  }
 `;
 
 const Testimonial = () => {
@@ -100,16 +134,12 @@ const Testimonial = () => {
   ];
 
   return (
-    <div className="bg-white flex flex-col justify-center items-center py-10">
-      <div>
-        <img src={Comma} alt="" />
+    <div className="bg-white flex flex-col justify-center items-center py-10 px-4 md:px-10">
+      <div className="mb-4 md:mb-6">
+        <img src={Comma} alt="Quote icon" className="w-8 md:w-10" />
       </div>
-      <TestimonialContainer>
-        {/* <PublicationInfo>
-      Auteur is a monthly book review publication distributed to 400,000 avid
-      readers through subscribing bookstores & public libraries.
-    </PublicationInfo> */}
 
+      <TestimonialContainer>
         <Carousel
           showArrows={true}
           showStatus={false}
