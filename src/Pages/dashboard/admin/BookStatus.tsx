@@ -1,19 +1,18 @@
-
 import useAxiosSecure from "../../../Hooks/axiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
+
 interface Book {
   id: number;
   title: string;
   author: string;
   contact: any;
   availability: string;
+  status: string;
   postAt: string;
 }
 
 const BookStatus = () => {
-
-
   const axiosSecure = useAxiosSecure();
 
   const { data: books = [], isLoading, refetch } = useQuery<Book[]>({
@@ -24,11 +23,19 @@ const BookStatus = () => {
     },
   });
 
+  const handleAccept = (bookId: number) => {
+    // Handle accept action
+    console.log("Accepted book with ID:", bookId);
+  };
 
+  const handleReject = (bookId: number) => {
+    // Handle reject action
+    console.log("Rejected book with ID:", bookId);
+  };
 
   return (
     <div className="p-6 font-Inter">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800 font-Gilda">📚 All Books</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-800 font-Gilda">📚 Book Status</h2>
 
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">
@@ -40,7 +47,8 @@ const BookStatus = () => {
               <th>Author</th>
               <th>Added By</th>
               <th>Added For</th>
-              <th>Added Date</th>
+              <th>Status</th>
+              <th>Actions</th>
             </tr>
           </thead>
 
@@ -55,13 +63,29 @@ const BookStatus = () => {
                 <td>
                   <span
                     className={`w-[70px] px-2 inline-flex justify-center items-center text-xs leading-5 rounded-full ${
-                      book.availability === "Exchange" ? "bg-green-200 text-green-800" : "bg-indigo-200 text-indigo-800"
+                      book.availability === "Exchange" 
+                        ? "bg-green-200 text-green-800" 
+                        : "bg-indigo-200 text-indigo-800"
                     }`}
                   >
                     {book.availability}
                   </span>
                 </td>
-                <td>{format(new Date(book.postAt), "MMM dd, yyyy h:mm a")}</td>
+                <td><div className="text-xs badge badge-soft badge-warning">{book.status}</div></td>
+                <td className="flex gap-2">
+                  <button 
+                    onClick={() => handleAccept(book.id)}
+                    className="btn btn-xs btn-success text-white"
+                  >
+                    Accept
+                  </button>
+                  <button 
+                    onClick={() => handleReject(book.id)}
+                    className="btn btn-xs btn-error text-white"
+                  >
+                    Reject
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
