@@ -5,7 +5,7 @@ import userImage from "../assets/user.webp";
 import { FaSearch } from "react-icons/fa";
 import { PiBellSimpleRinging } from "react-icons/pi";
 import { FaCartShopping } from "react-icons/fa6";
-import useAxiosPublic from './../Hooks/axiosPublic';
+import useAxiosPublic from "./../Hooks/axiosPublic";
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../Pages/Provider/AuthProvider";
 import toast from "react-hot-toast";
@@ -32,13 +32,14 @@ const Navbar = () => {
   //   setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   // };
 
-
   const toggleProfileDropdown = () => {
     setProfileDropdownOpen(!profileDropdownOpen);
   };
 
   const notificationCount = 3; // Example for notification count
   const cartCount = 2; // Example for cart count
+
+  const { cartCount } = useCartCount();
 
 
   const links = (
@@ -157,6 +158,7 @@ const Navbar = () => {
 
           {/* Cart icon */}
 
+
           <div className="drawer drawer-end z-20">
             <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content h-6">
@@ -195,6 +197,43 @@ const Navbar = () => {
 
           {/* cart details end */}
 
+          <div className="drawer drawer-end z-20">
+            <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content h-6">
+              {/* Cart Icon as Drawer Trigger */}
+              <label
+                htmlFor="cart-drawer"
+                className="relative text-2xl cursor-pointer"
+              >
+                <FaCartShopping />
+                {cartCount >= 0 && (
+                  <span className="absolute -top-2 left-3 text-xs font-semibold text-white bg-blue-500 rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </label>
+            </div>
+            <div className="drawer-side">
+              <label
+                htmlFor="cart-drawer"
+                aria-label="close sidebar"
+                className="drawer-overlay"
+              ></label>
+              <ul className="menu bg-base-200 text-base-content min-h-full w-96 p-4">
+                {/* Cart Sidebar Content */}
+                {/* <li>
+                  <a>Your Cart Item 1</a>
+                </li>
+                <li>
+                  <a>Your Cart Item 2</a>
+                </li> */}
+                <Cart />
+                {/* Add more items or components as needed */}
+              </ul>
+            </div>
+          </div>
+
+          {/* cart details end */}
 
           {/* Profile Dropdown */}
           <div
@@ -219,12 +258,14 @@ const Navbar = () => {
                 )}
               </div>
             </button>
-            {profileDropdownOpen && (
-              <ul className="font-Inter menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                {/* Username (non-clickable) */}
-                <li>
-                  <div
-                    id="name"
+
+
+
+            {/* {profileDropdownOpen && ( */}
+            <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              {/* Username (non-clickable) */}
+              <li>Profile</li>
+              <Link to={"/login"}>Login</Link>
 
                     className="justify-between text-base-content font-semibold"
                   >

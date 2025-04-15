@@ -90,8 +90,7 @@ const Router = createBrowserRouter([
         path: "profile",
         element: <Profile />,
       },
-    
-    ]
+    ],
   },
 
   {
