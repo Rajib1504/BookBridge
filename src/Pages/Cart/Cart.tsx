@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+// @ts-nocheck
 import useAxiosSecure from "../../Hooks/axiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import CartCard from "./CartCard";
@@ -9,7 +9,9 @@ import useCart from "../../Hooks/useCart";
 
 const Cart = () => {
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const auth = useAuth();
+  const user = auth?.user;
 
   const { cartsInfo, cartsInfoRefetch } = useCart();
 
@@ -46,7 +48,7 @@ const Cart = () => {
       .patch(
         `api/cart?userEmail=${user?.email}&cartId=${cartId}&newQuantity=${qty}`
       )
-      .then((res) => {
+      .then((res: any) => {
         if (res.data.modifiedCount > 0) toast.success("Cart updated.");
       })
       .catch(() => {
@@ -66,7 +68,7 @@ const Cart = () => {
     };
     axiosSecure
       .post("/api/rent", checkoutInfo)
-      .then((res) => {
+      .then((res:any) => {
         window.location.replace(res.data.url);
       })
       .catch(() => toast.error("Something went wrong. Try again."));

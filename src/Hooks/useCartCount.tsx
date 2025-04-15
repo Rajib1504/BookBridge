@@ -5,7 +5,9 @@ import useAuth from "./useAuth";
 
 const useCartCount = () => {
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
+  // const { user } = useAuth();
+    const auth = useAuth();
+    const user = auth?.user;
 
   // get cart items
   const { data: cartCount = 0, refetch: cartCountRefetch } = useQuery({
