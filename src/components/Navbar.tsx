@@ -70,11 +70,11 @@ const Navbar = () => {
   const handleLogout = () => {
     logout()
       .then(() => {
-        toast.success("Logout Successful!");
+        toast.success("Logout Successful !");
         navigate("/");
       })
       .catch((error: Error) => {
-        toast.error("Error logging out! " + error.message);
+        toast.error("Error logging out ! " + error.message);
       });
   };
   return (
