@@ -5,11 +5,11 @@ import { FaSearch } from "react-icons/fa";
 import { PiBellSimpleRinging } from "react-icons/pi";
 import { FaCartShopping } from "react-icons/fa6";
 import Cart from "../Pages/Cart/Cart";
-import useAxiosPublic from "./../Hooks/axiosPublic";
+// import useAxiosPublic from "./../Hooks/axiosPublic";
 import useCartCount from "../Hooks/useCartCount";
 
 const Navbar = () => {
-  const axiiospublic = useAxiosPublic();
+  // const axiiospublic = useAxiosPublic();
 
   // const [theme, setTheme] = useState<"light" | "dark">(() => {
   //   // Get the theme from localStorage or default to 'light'
