@@ -7,8 +7,6 @@ import { FaCartShopping } from "react-icons/fa6";
 import Cart from "../Pages/Cart/Cart";
 // import useAxiosPublic from "./../Hooks/axiosPublic";
 import useCartCount from "../Hooks/useCartCount";
-
-const Navbar = () => {
   // const axiiospublic = useAxiosPublic();
 import useAxiosPublic from "./../Hooks/axiosPublic";
 import { useContext, useRef, useState } from "react";
@@ -271,5 +269,6 @@ const Navbar = () => {
     </div>
   );
 };
+
 
 export default Navbar;
