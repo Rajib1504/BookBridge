@@ -1,10 +1,10 @@
 // @ts-nocheck
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import userImage from "../assets/user.webp";
 import { FaSearch } from "react-icons/fa";
 import { PiBellSimpleRinging } from "react-icons/pi";
 import { FaCartShopping } from "react-icons/fa6";
-import useAxiosPublic from './../Hooks/axiosPublic';
+import useAxiosPublic from "./../Hooks/axiosPublic";
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../Pages/Provider/AuthProvider";
 import toast from "react-hot-toast";
@@ -15,8 +15,10 @@ const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const profileDropdownRef = useRef<HTMLDivElement>(null);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
-  const axiiospublic = useAxiosPublic()
-  
+  const axiiospublic = useAxiosPublic();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const navigate = useNavigate();
+
   // const [theme, setTheme] = useState<"light" | "dark">(() => {
   //   // Get the theme from localStorage or default to 'light'
   //   return (localStorage.getItem("theme") as "light" | "dark") || "light";
@@ -31,13 +33,19 @@ const Navbar = () => {
   //   setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   // };
 
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
 
   const toggleProfileDropdown = () => {
     setProfileDropdownOpen(!profileDropdownOpen);
   };
 
   const notificationCount = 3; // Example for notification count
-  const cartCount = 2; // Example for cart count
+  // const cartCount = 2;
+  // Example for cart count
+
+  const { cartCount } = useCartCount();
 
 
   const links = (
@@ -90,15 +98,15 @@ const Navbar = () => {
           </Link>
 
           <div className="hidden lg:flex">
-            <ul className="menu menu-horizontal font-bold text-sm font-Inter">
+            <ul className="menu menu-horizontal font-bold text-sm font-Gilda">
               {links}
             </ul>
           </div>
 
-          <div className="dropdown lg:hidden">
+          <div className="font-Gilda dropdown lg:hidden">
             <button
-              // onClick={toggleDropdown}
-              className="btn btn-outline btn-warning"
+              onClick={toggleDropdown}
+              className="btn btn-outline btn-primary"
               aria-label="Toggle Menu"
             >
               <svg
@@ -116,7 +124,21 @@ const Navbar = () => {
                 />
               </svg>
             </button>
-
+            {dropdownOpen && (
+              <ul className="menu dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-10">
+                <li className="font-bold italic text-xl my-2 mx-auto tracking-tight relative group">
+                  <span className="absolute inset-0 transition-opacity duration-300 mb-5"></span>
+                  <Link
+                    to={"/"}
+                    className="flex gap-0 font-Gilda relative text-gray-500 group-hover:text-white transition-colors duration-300"
+                  >
+                     <span className="text-yellow-600">B</span>ook
+                     <span className="text-red-600">B</span>ridge
+                  </Link>
+                </li>
+                <div className="font-semibold font-Inter">{links}</div>
+              </ul>
+            )}
           </div>
         </div>
 
@@ -155,7 +177,7 @@ const Navbar = () => {
             )}
           </button>
 
-          {/* Cart icon */}
+          {/* cart details start */}
 
           <div className="drawer drawer-end z-20">
             <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
@@ -180,21 +202,12 @@ const Navbar = () => {
                 className="drawer-overlay"
               ></label>
               <ul className="menu bg-base-200 text-base-content min-h-full w-96 p-4">
-                {/* Cart Sidebar Content */}
-                {/* <li>
-                  <a>Your Cart Item 1</a>
-                </li>
-                <li>
-                  <a>Your Cart Item 2</a>
-                </li> */}
                 <Cart />
-                {/* Add more items or components as needed */}
               </ul>
             </div>
           </div>
 
           {/* cart details end */}
-
 
           {/* Profile Dropdown */}
           <div
@@ -219,24 +232,19 @@ const Navbar = () => {
                 )}
               </div>
             </button>
+
             {profileDropdownOpen && (
-              <ul className="font-Inter menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                {/* Username (non-clickable) */}
+              <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                {user?.email && (
+                  <li className="text-sm font-semibold text-center pointer-events-none">
+                    {user.displayName}
+                  </li>
+                )}
                 <li>
-                  <div
-                    id="name"
-
-                    className="justify-between text-base-content font-semibold"
-                  >
-                    {user?.email ? user.displayName : ""}
-                  </div>
+                  <Link to="/dashboard/admin/profile">Profile</Link>
                 </li>
                 <li>
-                  <Link to={"/dashboard/admin/profile"}>Profile</Link>
-                </li>
-
-                <li>
-                  {user && user?.email ? (
+                  {user?.email ? (
                     <button
                       onClick={handleLogout}
                       className="text-error font-semibold"
