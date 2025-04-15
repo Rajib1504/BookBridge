@@ -2,7 +2,7 @@
 
 BookBridge is an innovative Book Rental and Exchange platform where users can explore, rent, and exchange a wide variety of books across genres. Whether you're a reader, student, or bookworm, BookBridge offers a seamless and user-friendly interface to dive into the world of literature.
 
-![Banner Screenshot](./https://i.ibb.co/tG23WQn/image.png)
+![Banner Screenshot](https://i.ibb.co/tG23WQn/image.png)
 
 ---
 
