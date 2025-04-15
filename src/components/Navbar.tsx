@@ -1,16 +1,23 @@
+// @ts-nocheck
 import { Link, NavLink } from "react-router-dom";
 import userImage from "../assets/user.webp";
 // import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { PiBellSimpleRinging } from "react-icons/pi";
 import { FaCartShopping } from "react-icons/fa6";
-import Cart from "../Pages/Cart/Cart";
 import useAxiosPublic from "./../Hooks/axiosPublic";
+import { useContext, useRef, useState } from "react";
+import { AuthContext } from "../Pages/Provider/AuthProvider";
+import toast from "react-hot-toast";
+import Cart from "../Pages/Cart/Cart";
 import useCartCount from "../Hooks/useCartCount";
 
 const Navbar = () => {
-  const axiiospublic = useAxiosPublic();
-
+  const { user, logout } = useContext(AuthContext);
+  const profileDropdownRef = useRef<HTMLDivElement>(null);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const axiiospublic = useAxiosPublic()
+  
   // const [theme, setTheme] = useState<"light" | "dark">(() => {
   //   // Get the theme from localStorage or default to 'light'
   //   return (localStorage.getItem("theme") as "light" | "dark") || "light";
@@ -25,9 +32,15 @@ const Navbar = () => {
   //   setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   // };
 
-  const notificationCount = 3; // Example notification count
-  // const cartCount = 0; // Example cart count
+  const toggleProfileDropdown = () => {
+    setProfileDropdownOpen(!profileDropdownOpen);
+  };
+
+  const notificationCount = 3; // Example for notification count
+  const cartCount = 2; // Example for cart count
+
   const { cartCount } = useCartCount();
+
 
   const links = (
     <>
@@ -51,6 +64,17 @@ const Navbar = () => {
       </li>
     </>
   );
+
+  const handleLogout = () => {
+    logout()
+      .then(() => {
+        toast.success("Logout Successful !");
+        navigate("/");
+      })
+      .catch((error: Error) => {
+        toast.error("Error logging out ! " + error.message);
+      });
+  };
   return (
     <div className="px-4 lg:px-6">
       <div className="navbar justify-between py-2">
@@ -94,21 +118,6 @@ const Navbar = () => {
                 />
               </svg>
             </button>
-            {/* {dropdownOpen && (
-              <ul className="menu dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-10">
-                <li className="font-bold italic text-xl my-2 mx-auto tracking-tight relative group">
-                  <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 blur-lg opacity-30 group-hover:opacity-70 transition-opacity duration-300 mb-5"></span>
-                  <Link
-                    to={"/"}
-                    className="flex gap-0 relative text-gray-500 group-hover:text-white transition-colors duration-300"
-                  >
-                    <span className="text-yellow-600">B</span>ook
-              <span className="text-red-600">B</span>ridge
-                  </Link>
-                </li>
-                <div className="font-semibold text-yellow-500">{links}</div>
-              </ul>
-            )} */}
           </div>
         </div>
 
@@ -148,6 +157,45 @@ const Navbar = () => {
           </button>
 
           {/* Cart icon */}
+
+
+          <div className="drawer drawer-end z-20">
+            <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content h-6">
+              {/* Cart Icon as Drawer Trigger */}
+              <label
+                htmlFor="cart-drawer"
+                className="relative text-2xl cursor-pointer"
+              >
+                <FaCartShopping />
+                {cartCount >= 0 && (
+                  <span className="absolute -top-2 left-3 text-xs font-semibold text-white bg-blue-500 rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </label>
+            </div>
+            <div className="drawer-side">
+              <label
+                htmlFor="cart-drawer"
+                aria-label="close sidebar"
+                className="drawer-overlay"
+              ></label>
+              <ul className="menu bg-base-200 text-base-content min-h-full w-96 p-4">
+                {/* Cart Sidebar Content */}
+                {/* <li>
+                  <a>Your Cart Item 1</a>
+                </li>
+                <li>
+                  <a>Your Cart Item 2</a>
+                </li> */}
+                <Cart />
+                {/* Add more items or components as needed */}
+              </ul>
+            </div>
+          </div>
+
+          {/* cart details end */}
 
           <div className="drawer drawer-end z-20">
             <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
@@ -189,17 +237,16 @@ const Navbar = () => {
 
           {/* Profile Dropdown */}
           <div
-            // ref={profileDropdownRef}
+            ref={profileDropdownRef}
             className="dropdown dropdown-end relative"
           >
             <button
-              // onClick={toggleProfileDropdown}
+              onClick={toggleProfileDropdown}
               className="btn btn-ghost btn-circle avatar"
               aria-label="Toggle Profile Dropdown"
             >
-              <div className="w-9 h-9 flex  items-center justify-center rounded-full overflow-hidden border border-gray-300 bg-gray-200">
-                <img src={userImage} alt="" className="object-cover" />
-                {/* {user && user.email ? (
+              <div className="w-10 h-10 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 bg-gray-200">
+                {user && user.email ? (
                   <img
                     referrerPolicy="no-referrer"
                     alt="User Profile"
@@ -208,33 +255,29 @@ const Navbar = () => {
                   />
                 ) : (
                   <img src={userImage} alt="" />
-                )} */}
+                )}
               </div>
             </button>
+
+
+
             {/* {profileDropdownOpen && ( */}
             <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
               {/* Username (non-clickable) */}
               <li>Profile</li>
               <Link to={"/login"}>Login</Link>
 
-              {/* Other Dropdown Items */}
-              <li>
-                {/* <Link
-                    to={
-                      userType === "User"
-                        ? "/dashboard/bookParcel"
-                        : userType === "DeliveryMan"
-                        ? "/dashboard/myDeliveryList"
-                        : "/dashboard/statistics"
-                    }
                     className="justify-between text-base-content font-semibold"
                   >
-                    Dashboard
-                  </Link> */}
-              </li>
+                    {user?.email ? user.displayName : ""}
+                  </div>
+                </li>
+                <li>
+                  <Link to={"/dashboard/admin/profile"}>Profile</Link>
+                </li>
 
-              <li>
-                {/* {user && user?.email ? (
+                <li>
+                  {user && user?.email ? (
                     <button
                       onClick={handleLogout}
                       className="text-error font-semibold"
@@ -245,10 +288,10 @@ const Navbar = () => {
                     <Link to="/login" className="text-primary font-semibold">
                       Login
                     </Link>
-                  )} */}
-              </li>
-            </ul>
-            {/* )} */}
+                  )}
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </div>

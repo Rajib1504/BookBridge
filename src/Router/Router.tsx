@@ -23,6 +23,7 @@ import BookDetails from "../Pages/Books/BookDetails";
 import About from "../Pages/About/About";
 import Categories from "../Pages/Categories/Categories";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import BookStatus from "../Pages/dashboard/admin/BookStatus";
 
 const Router = createBrowserRouter([
   {
