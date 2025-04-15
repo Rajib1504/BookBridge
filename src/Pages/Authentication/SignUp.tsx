@@ -5,8 +5,7 @@ import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../Hooks/axiosPublic";
-import SocialLogin from './SocialLogin';
-
+import Social from "./Social";
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
@@ -143,7 +142,7 @@ const SignUp = () => {
           </form>
           <div className="my-6 text-gray-600">Or Sign Up With</div>
           <div className="flex justify-center items-center gap-6">
-            <SocialLogin/>
+            <Social/>
           </div>
         </aside>
       </div>

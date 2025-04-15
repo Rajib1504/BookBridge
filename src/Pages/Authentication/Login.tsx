@@ -1,11 +1,10 @@
-import { FcGoogle } from "react-icons/fc";
 import loginimg from "../../assets/Images/AuthenticationImage/loginimage.webp";
-import { SiGithub } from "react-icons/si";
-import { FaTwitter } from "react-icons/fa";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import Social from "./Social";
+
 
 
 type LoginFormInputs = {
@@ -90,9 +89,7 @@ const Login = () => {
           <div className="divider m-8">Or</div>
 
           <div className="flex justify-center items-center gap-5">
-            <FcGoogle className="text-4xl cursor-pointer" />
-            <SiGithub className="text-4xl cursor-pointer" />
-            <FaTwitter className="text-4xl text-sky-400 cursor-pointer" />
+           <Social/>
           </div>
           <span className="flex justify-center items-center mt-7 gap-1">
             Create an 

@@ -18,7 +18,7 @@ export const AuthContext = createContext(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
 
-  const googlelogin = () => {
+  const googlelogin:any = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };

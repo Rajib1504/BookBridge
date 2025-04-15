@@ -8,6 +8,7 @@ import { FaRegCheckCircle } from "react-icons/fa";
 import { useState } from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import BestSellerCard from "../../Components/BestSellerCard";
+import useAddToCart from "../../Hooks/useAddToCart";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -24,7 +25,6 @@ const BookDetails = () => {
     },
   });
 
-  console.log(specificBookDetails);
 
   const [count, setCount] = useState(1);
 
@@ -36,6 +36,8 @@ const BookDetails = () => {
   const handleIncrease = () => {
     setCount(count + 1);
   };
+
+  const handleAddtoCart = useAddToCart();
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 my-20 font-Inter">
@@ -106,7 +108,15 @@ const BookDetails = () => {
           <div className="flex items-center gap-4 mt-4">
             {/* add to cart area  */}
             <div className="w-full">
-              <button className="w-full text-white btn uppercase tracking-widest text-xs bg-[#201c1c] border-0 hover:bg-[#d62928]">
+              <button
+                onClick={() =>
+                  handleAddtoCart(
+                    specificBookDetails?.bookId,
+                    specificBookDetails?.rentalPrice
+                  )
+                }
+                className="w-full text-white btn uppercase tracking-widest text-xs bg-[#201c1c] border-0 hover:bg-[#d62928]"
+              >
                 Add to Cart{" "}
                 <HiOutlineShoppingBag className="text-lg"></HiOutlineShoppingBag>{" "}
               </button>

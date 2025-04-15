@@ -9,7 +9,8 @@ import useAxiosPublic from './../Hooks/axiosPublic';
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../Pages/Provider/AuthProvider";
 import toast from "react-hot-toast";
-
+import Cart from "../Pages/Cart/Cart";
+import useCartCount from "../Hooks/useCartCount";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -31,12 +32,14 @@ const Navbar = () => {
   //   setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   // };
 
+
   const toggleProfileDropdown = () => {
     setProfileDropdownOpen(!profileDropdownOpen);
   };
 
   const notificationCount = 3; // Example for notification count
   const cartCount = 2; // Example for cart count
+
 
   const links = (
     <>
@@ -48,12 +51,6 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink to="/browse-books">Browse Books</NavLink>
-      </li>
-      <li>
-        <NavLink to="/shop">Book Listing</NavLink>
-      </li>
-      <li>
-        <NavLink to="/blogs">My Books</NavLink>
       </li>
       <li>
         <NavLink to="/about-us">About Us</NavLink>
@@ -120,21 +117,6 @@ const Navbar = () => {
                 />
               </svg>
             </button>
-            {/* {dropdownOpen && (
-              <ul className="menu dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-10">
-                <li className="font-bold italic text-xl my-2 mx-auto tracking-tight relative group">
-                  <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 blur-lg opacity-30 group-hover:opacity-70 transition-opacity duration-300 mb-5"></span>
-                  <Link
-                    to={"/"}
-                    className="flex gap-0 relative text-gray-500 group-hover:text-white transition-colors duration-300"
-                  >
-                    <span className="text-yellow-600">B</span>ook
-              <span className="text-red-600">B</span>ridge
-                  </Link>
-                </li>
-                <div className="font-semibold text-yellow-500">{links}</div>
-              </ul>
-            )} */}
           </div>
         </div>
 
@@ -145,7 +127,7 @@ const Navbar = () => {
         </div> */}
 
         {/* Navbar End */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 relative">
           {/* <p className="text-sm text-gray-500">{user && user.email}</p> */}
 
           <div className="relative">
@@ -174,16 +156,44 @@ const Navbar = () => {
           </button>
 
           {/* Cart icon */}
-          <button className="relative text-2xl p-2">
-            <FaCartShopping />
-            {/* Cart badge */}
-            {cartCount > 0 && (
-              <span className="absolute top-0 right-0 text-xs font-semibold text-white bg-blue-500 rounded-full w-5 h-5 flex items-center justify-center">
-                {cartCount}
-              </span>
-            )}
-          </button>
 
+          <div className="drawer drawer-end z-20">
+            <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content h-6">
+              {/* Cart Icon as Drawer Trigger */}
+              <label
+                htmlFor="cart-drawer"
+                className="relative text-2xl cursor-pointer"
+              >
+                <FaCartShopping />
+                {cartCount >= 0 && (
+                  <span className="absolute -top-2 left-3 text-xs font-semibold text-white bg-blue-500 rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </label>
+            </div>
+            <div className="drawer-side">
+              <label
+                htmlFor="cart-drawer"
+                aria-label="close sidebar"
+                className="drawer-overlay"
+              ></label>
+              <ul className="menu bg-base-200 text-base-content min-h-full w-96 p-4">
+                {/* Cart Sidebar Content */}
+                {/* <li>
+                  <a>Your Cart Item 1</a>
+                </li>
+                <li>
+                  <a>Your Cart Item 2</a>
+                </li> */}
+                <Cart />
+                {/* Add more items or components as needed */}
+              </ul>
+            </div>
+          </div>
+
+          {/* cart details end */}
 
 
           {/* Profile Dropdown */}
@@ -215,6 +225,7 @@ const Navbar = () => {
                 <li>
                   <div
                     id="name"
+
                     className="justify-between text-base-content font-semibold"
                   >
                     {user?.email ? user.displayName : ""}
