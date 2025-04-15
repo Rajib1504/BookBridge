@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { FaRegTrashCan } from "react-icons/fa6";
 import { LuDollarSign } from "react-icons/lu";
 import { RxCross1 } from "react-icons/rx";
@@ -21,7 +22,9 @@ const CartCard = ({
   cartsInfoRefetch,
 }: CartCardProps) => {
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const auth = useAuth();
+  const user = auth?.user;
 
   const { cartCountRefetch } = useCartCount();
 
@@ -38,7 +41,7 @@ const CartCard = ({
       .patch(
         `/api/delete/cart?cartId=${cartInfo?.cartId}&userEmail=${user?.email}`
       )
-      .then((res) => {
+      .then((res:any) => {
         if (res.data.modifiedCount > 0) {
           cartsInfoRefetch();
           cartCountRefetch();

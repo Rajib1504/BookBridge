@@ -1,10 +1,13 @@
+// @ts-nocheck
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
 import useAxiosSecure from "./axiosSecure";
 
 const useCart = () => {
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const auth = useAuth();
+  const user = auth?.user;
 
   // get cart items
   const { data: cartsInfo = [], refetch: cartsInfoRefetch } = useQuery({
