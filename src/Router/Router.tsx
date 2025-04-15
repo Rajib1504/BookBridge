@@ -94,8 +94,7 @@ const Router = createBrowserRouter([
         path: "book-status",
         element: <BookStatus />,
       },
-    
-    ]
+    ],
   },
 
   {

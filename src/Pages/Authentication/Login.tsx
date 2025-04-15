@@ -1,22 +1,19 @@
-import { FcGoogle } from "react-icons/fc";
+// @ts-nocheck
 import loginimg from "../../assets/Images/AuthenticationImage/loginimage.webp";
-import { SiGithub } from "react-icons/si";
-import { FaTwitter } from "react-icons/fa";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
-
+import Social from "./Social";
 
 type LoginFormInputs = {
   email: string;
   password: string;
 };
 
-
 const Login = () => {
-  const navigate = useNavigate()
-  const {login}=useAuth()
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const {
     register,
     handleSubmit,
@@ -25,19 +22,19 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
     login(data.email, data.password)
-      .then((res) => {
+      .then((res: any) => {
         const user = res.user;
         console.log(user);
-        toast.success(`user Login by ${user.email}`)
-        navigate('/')
+        toast.success(`user Login by ${user.email}`);
+        navigate("/");
       })
-      .catch((err) => {
+      .catch((err: any) => {
         console.error(err.message);
-        toast.error(err.message)
-        navigate('/')
+        toast.error(err.message);
+        navigate("/");
       });
   };
-  
+
   return (
     <section className="flex justify-center items-center min-h-screen flex-col">
       <div className="mt-20 flex flex-wrap justify-between items-center w-11/12 mx-auto rounded-lg">
@@ -90,13 +87,13 @@ const Login = () => {
           <div className="divider m-8">Or</div>
 
           <div className="flex justify-center items-center gap-5">
-            <FcGoogle className="text-4xl cursor-pointer" />
-            <SiGithub className="text-4xl cursor-pointer" />
-            <FaTwitter className="text-4xl text-sky-400 cursor-pointer" />
+            <Social />
           </div>
           <span className="flex justify-center items-center mt-7 gap-1">
-            Create an 
-<Link to={'/signup'} className="text-blue-500 hover:underline">account</Link>
+            Create an
+            <Link to={"/signup"} className="text-blue-500 hover:underline">
+              account
+            </Link>
           </span>
         </aside>
       </div>

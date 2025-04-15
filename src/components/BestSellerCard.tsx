@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { useState } from "react";
@@ -5,6 +6,8 @@ import { Zoom } from "react-awesome-reveal";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { LuDollarSign } from "react-icons/lu";
 import { Link } from "react-router-dom";
+import useAddToCart from "../Hooks/useAddToCart";
+
 
 type Books = {
   availability: string;
@@ -25,8 +28,11 @@ type Books = {
 type BestSellerCardProps = {
   book: Books;
 };
+
 const BestSellerCard = ({ book }: BestSellerCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  const handleAddtoCart = useAddToCart();
 
   return (
     <div
@@ -45,7 +51,12 @@ const BestSellerCard = ({ book }: BestSellerCardProps) => {
             <>
               <Zoom duration={500}>
                 <div className="hidden md:block absolute w-full bottom-8 px-4">
-                  <button className="w-full text-white btn uppercase tracking-widest text-xs bg-[#201c1c] border-0 hover:bg-[#d62928]">
+                  <button
+                    onClick={() =>
+                      handleAddtoCart(book?.bookId, book?.rentalPrice)
+                    }
+                    className="w-full text-white btn uppercase tracking-widest text-xs bg-[#201c1c] border-0 hover:bg-[#d62928]"
+                  >
                     Add to Cart{" "}
                     <HiOutlineShoppingBag className="text-lg"></HiOutlineShoppingBag>{" "}
                   </button>

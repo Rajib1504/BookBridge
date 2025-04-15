@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Sidebar from "../components/dashboard/Sidebar";
+import Sidebar from "../Components/dashboard/Sidebar";
 import { FaBars } from "react-icons/fa";
 import { Outlet } from "react-router-dom";
 

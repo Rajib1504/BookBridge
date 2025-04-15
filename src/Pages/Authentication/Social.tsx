@@ -1,4 +1,6 @@
+
 // @ts-nocheck
+
 import useAxiosPublic from "../../Hooks/axiosPublic";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-hot-toast";
@@ -7,18 +9,21 @@ import { FcGoogle } from "react-icons/fc";
 import { SiGithub } from "react-icons/si";
 import { FaTwitter } from "react-icons/fa";
 
-const SocialLogin = () => {
+const Social = () => {
   const axiosPublic = useAxiosPublic();
   const { googlelogin } = useAuth();
   const navigate = useNavigate();
   const handlegoogleSignin = () => {
     googlelogin()
+
       .then((res: any) => {
         const userInfo = {
           name: res.user?.displayName,
           email: res.user?.email,
+        profile: res.user?.photoURL,
+        role: 'user'
         };
-
+        console.log(userInfo);
         axiosPublic.post("/users", userInfo).then(() => {
           toast.success(`Welcome ${userInfo.name}`);
           navigate("/");
@@ -38,4 +43,4 @@ const SocialLogin = () => {
   );
 };
 
-export default SocialLogin;
+export default Social;

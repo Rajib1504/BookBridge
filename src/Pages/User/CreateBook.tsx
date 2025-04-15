@@ -1,7 +1,9 @@
+// @ts-nocheck
 import { useForm, SubmitHandler } from "react-hook-form";
 import useAxiosSecure from "../../Hooks/axiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 type Inputs = {
   availability: string;
@@ -26,6 +28,10 @@ export default function CreateBook() {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
+  // const { user } = useAuth();
+  const auth = useAuth();
+  const user = auth?.user;
+
   // import from use form
   const {
     register,
@@ -44,7 +50,7 @@ export default function CreateBook() {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes",
-    }).then(async (result) => {
+    }).then(async (result: any) => {
       if (result.isConfirmed) {
         // cover image upload to server
         const coverImage = { image: data.coverImage[0] };
@@ -83,7 +89,7 @@ export default function CreateBook() {
           // then send book info to backend
           axiosSecure
             .post("/api/books", bookInfo)
-            .then((res) => {
+            .then((res: any) => {
               if (res.data.insertedId) {
                 Swal.fire({
                   title: "Done!",
@@ -262,7 +268,7 @@ export default function CreateBook() {
             <div>
               <label className="block font-medium">Name</label>
               <input
-                defaultValue="Najmul Shaon"
+                defaultValue={user?.displayName}
                 readOnly
                 {...register("ownerName", {
                   required: "Your name is required",
@@ -276,7 +282,7 @@ export default function CreateBook() {
             <div>
               <label className="block font-medium">Email</label>
               <input
-                defaultValue="najmul.nh.shaon@gmail.com"
+                defaultValue={user?.email}
                 readOnly
                 type="email"
                 {...register("contactEmail", { required: "Email is required" })}
