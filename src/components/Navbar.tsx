@@ -4,6 +4,12 @@ import userImage from "../assets/user.webp";
 import { FaSearch } from "react-icons/fa";
 import { PiBellSimpleRinging } from "react-icons/pi";
 import { FaCartShopping } from "react-icons/fa6";
+import Cart from "../Pages/Cart/Cart";
+// import useAxiosPublic from "./../Hooks/axiosPublic";
+import useCartCount from "../Hooks/useCartCount";
+
+const Navbar = () => {
+  // const axiiospublic = useAxiosPublic();
 import useAxiosPublic from "./../Hooks/axiosPublic";
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../Pages/Provider/AuthProvider";

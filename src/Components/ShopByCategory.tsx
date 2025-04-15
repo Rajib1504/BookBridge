@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -18,7 +18,7 @@ const ShopByCategory = () => {
         <p className="uppercase text-xs tracking-widest font-bold text-[#d62928]">
           category
         </p>
-        <h3 className="font-Gilda leading-snug font-light text-5xl ">
+        <h3 className="font-Gilda leading-snug text-center font-light text-5xl ">
           Shop by categories
         </h3>
       </aside>
