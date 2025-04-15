@@ -16,11 +16,7 @@ interface User {
 const ManageUsers: React.FC = () => {
   const axiosSecure = useAxiosSecure();
 
-  const {
-    data: users = [],
-    isLoading,
-    refetch,
-  } = useQuery<User[]>({
+  const { data: users = [], refetch } = useQuery<User[]>({
     queryKey: ["users"],
     queryFn: async () => {
       const { data } = await axiosSecure("/all/users");

@@ -1,6 +1,5 @@
 import useAxiosSecure from "../../../Hooks/axiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { format } from "date-fns";
 
 interface Book {
   id: number;
@@ -15,7 +14,7 @@ interface Book {
 const BookStatus = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: books = [], isLoading, refetch } = useQuery<Book[]>({
+  const { data: books = [] } = useQuery<Book[]>({
     queryKey: ["books"],
     queryFn: async () => {
       const { data } = await axiosSecure("/all/books");
@@ -35,7 +34,9 @@ const BookStatus = () => {
 
   return (
     <div className="p-6 font-Inter">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800 font-Gilda">📚 Book Status</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-800 font-Gilda">
+        📚 Book Status
+      </h2>
 
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">
@@ -63,23 +64,27 @@ const BookStatus = () => {
                 <td>
                   <span
                     className={`w-[70px] px-2 inline-flex justify-center items-center text-xs leading-5 rounded-full ${
-                      book.availability === "Exchange" 
-                        ? "bg-green-200 text-green-800" 
+                      book.availability === "Exchange"
+                        ? "bg-green-200 text-green-800"
                         : "bg-indigo-200 text-indigo-800"
                     }`}
                   >
                     {book.availability}
                   </span>
                 </td>
-                <td><div className="text-xs badge badge-soft badge-warning">{book.status}</div></td>
+                <td>
+                  <div className="text-xs badge badge-soft badge-warning">
+                    {book.status}
+                  </div>
+                </td>
                 <td className="flex gap-2">
-                  <button 
+                  <button
                     onClick={() => handleAccept(book.id)}
                     className="btn btn-xs btn-success text-white"
                   >
                     Accept
                   </button>
-                  <button 
+                  <button
                     onClick={() => handleReject(book.id)}
                     className="btn btn-xs btn-error text-white"
                   >

@@ -1,4 +1,3 @@
-
 import useAxiosSecure from "../../../Hooks/axiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
@@ -12,11 +11,9 @@ interface Book {
 }
 
 const AllBooks = () => {
-
-
   const axiosSecure = useAxiosSecure();
 
-  const { data: books = [], isLoading, refetch } = useQuery<Book[]>({
+  const { data: books = [] } = useQuery<Book[]>({
     queryKey: ["books"],
     queryFn: async () => {
       const { data } = await axiosSecure("/all/books");
@@ -24,11 +21,11 @@ const AllBooks = () => {
     },
   });
 
-
-
   return (
     <div className="p-6 font-Inter">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800 font-Gilda">📚 All Books</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-800 font-Gilda">
+        📚 All Books
+      </h2>
 
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">
@@ -55,7 +52,9 @@ const AllBooks = () => {
                 <td>
                   <span
                     className={`w-[70px] px-2 inline-flex justify-center items-center text-xs leading-5 rounded-full ${
-                      book.availability === "Exchange" ? "bg-green-200 text-green-800" : "bg-indigo-200 text-indigo-800"
+                      book.availability === "Exchange"
+                        ? "bg-green-200 text-green-800"
+                        : "bg-indigo-200 text-indigo-800"
                     }`}
                   >
                     {book.availability}
