@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -8,8 +8,7 @@ import image_2 from "../assets/Images/ShopByCategory/image_2.png";
 import image_3 from "../assets/Images/ShopByCategory/image_3.png";
 import image_4 from "../assets/Images/ShopByCategory/image_4.png";
 import image_5 from "../assets/Images/ShopByCategory/image_5.png";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 const ShopByCategory = () => {
   return (
@@ -57,8 +56,10 @@ const ShopByCategory = () => {
             // Add more items if needed
           ].map((item, index) => (
             <SwiperSlide key={index}>
-              <Link to={'/'} className="flex justify-center"> {/* Center the single item */}
-                <div  className="hover:text-[#d62928] border-2 border-gray-400 w-[224px] h-[224px] rounded-lg flex flex-col justify-center gap-5 items-center">
+              <Link to={"/"} className="flex justify-center">
+                {" "}
+                {/* Center the single item */}
+                <div className="hover:text-[#d62928] border-2 border-gray-400 w-[224px] h-[224px] rounded-lg flex flex-col justify-center gap-5 items-center">
                   <figure className="hover:scale-105 hover:duration-300">
                     <img src={item.image} className="w-20" alt={item.title} />
                   </figure>

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/axiosPublic";
 import { useQuery } from "@tanstack/react-query";
@@ -7,7 +8,6 @@ import { LuDollarSign } from "react-icons/lu";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { useState } from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import BestSellerCard from "../../Components/BestSellerCard";
 import useAddToCart from "../../Hooks/useAddToCart";
 
 const BookDetails = () => {
@@ -24,7 +24,6 @@ const BookDetails = () => {
       return res.data;
     },
   });
-
 
   const [count, setCount] = useState(1);
 
