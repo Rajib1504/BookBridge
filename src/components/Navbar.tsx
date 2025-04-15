@@ -35,8 +35,8 @@ const Navbar = () => {
     setProfileDropdownOpen(!profileDropdownOpen);
   };
 
-  const notificationCount = 3; // Example notification count
-  const cartCount = 2; // Example cart count
+  const notificationCount = 3; // Example for notification count
+  const cartCount = 2; // Example for cart count
 
   const links = (
     <>
