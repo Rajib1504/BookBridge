@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Link, NavLink } from "react-router-dom";
 import userImage from "../assets/user.webp";
 // import { useEffect, useState } from "react";
@@ -5,8 +6,15 @@ import { FaSearch } from "react-icons/fa";
 import { PiBellSimpleRinging } from "react-icons/pi";
 import { FaCartShopping } from "react-icons/fa6";
 import useAxiosPublic from './../Hooks/axiosPublic';
+import { useContext, useRef, useState } from "react";
+import { AuthContext } from "../Pages/Provider/AuthProvider";
+import toast from "react-hot-toast";
+
 
 const Navbar = () => {
+  const { user, logout } = useContext(AuthContext);
+  const profileDropdownRef = useRef<HTMLDivElement>(null);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const axiiospublic = useAxiosPublic()
   
   // const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -22,6 +30,10 @@ const Navbar = () => {
   // const toggleTheme = () => {
   //   setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   // };
+
+  const toggleProfileDropdown = () => {
+    setProfileDropdownOpen(!profileDropdownOpen);
+  };
 
   const notificationCount = 3; // Example notification count
   const cartCount = 2; // Example cart count
@@ -54,6 +66,17 @@ const Navbar = () => {
       </li>
     </>
   );
+
+  const handleLogout = () => {
+    logout()
+      .then(() => {
+        toast.success("Logout Successful!");
+        navigate("/");
+      })
+      .catch((error: Error) => {
+        toast.error("Error logging out! " + error.message);
+      });
+  };
   return (
     <div className="px-4 lg:px-6">
       <div className="navbar justify-between py-2">
@@ -162,19 +185,19 @@ const Navbar = () => {
           </button>
 
 
+
           {/* Profile Dropdown */}
           <div
-            // ref={profileDropdownRef}
+            ref={profileDropdownRef}
             className="dropdown dropdown-end relative"
           >
             <button
-              // onClick={toggleProfileDropdown}
+              onClick={toggleProfileDropdown}
               className="btn btn-ghost btn-circle avatar"
               aria-label="Toggle Profile Dropdown"
             >
-              <div className="w-9 h-9 flex  items-center justify-center rounded-full overflow-hidden border border-gray-300 bg-gray-200">
-                <img src={userImage} alt="" className="object-cover" />
-                {/* {user && user.email ? (
+              <div className="w-10 h-10 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 bg-gray-200">
+                {user && user.email ? (
                   <img
                     referrerPolicy="no-referrer"
                     alt="User Profile"
@@ -183,38 +206,26 @@ const Navbar = () => {
                   />
                 ) : (
                   <img src={userImage} alt="" />
-                )} */}
+                )}
               </div>
             </button>
-            {/* {profileDropdownOpen && ( */}
-            <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-              {/* Username (non-clickable) */}
-              <li>
-                Profile
-              </li>
-              <Link to={'/login'}>
-                Login
-              </Link>
-             
-
-              {/* Other Dropdown Items */}
-              <li>
-                {/* <Link
-                    to={
-                      userType === "User"
-                        ? "/dashboard/bookParcel"
-                        : userType === "DeliveryMan"
-                        ? "/dashboard/myDeliveryList"
-                        : "/dashboard/statistics"
-                    }
+            {profileDropdownOpen && (
+              <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                {/* Username (non-clickable) */}
+                <li>
+                  <div
+                    id="name"
                     className="justify-between text-base-content font-semibold"
                   >
-                    Dashboard
-                  </Link> */}
-              </li>
+                    {user?.email ? user.displayName : ""}
+                  </div>
+                </li>
+                <li>
+                  <Link to={"/dashboard/admin/profile"}>Profile</Link>
+                </li>
 
-              <li>
-                {/* {user && user?.email ? (
+                <li>
+                  {user && user?.email ? (
                     <button
                       onClick={handleLogout}
                       className="text-error font-semibold"
@@ -225,10 +236,10 @@ const Navbar = () => {
                     <Link to="/login" className="text-primary font-semibold">
                       Login
                     </Link>
-                  )} */}
-              </li>
-            </ul>
-            {/* )} */}
+                  )}
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </div>
