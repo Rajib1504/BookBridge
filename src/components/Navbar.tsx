@@ -8,6 +8,8 @@ import useAxiosPublic from "./../Hooks/axiosPublic";
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../Pages/Provider/AuthProvider";
 import toast from "react-hot-toast";
+import useCartCount from "../Hooks/useCartCount";
+import Cart from "../Pages/Cart/Cart";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
