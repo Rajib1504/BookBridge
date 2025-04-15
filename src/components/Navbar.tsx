@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import userImage from "../assets/user.webp";
-// import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { PiBellSimpleRinging } from "react-icons/pi";
 import { FaCartShopping } from "react-icons/fa6";
@@ -17,6 +16,7 @@ const Navbar = () => {
   const profileDropdownRef = useRef<HTMLDivElement>(null);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const axiiospublic = useAxiosPublic();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
   // const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -33,6 +33,10 @@ const Navbar = () => {
   //   setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   // };
 
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
   const toggleProfileDropdown = () => {
     setProfileDropdownOpen(!profileDropdownOpen);
   };
@@ -42,6 +46,7 @@ const Navbar = () => {
   // Example for cart count
 
   const { cartCount } = useCartCount();
+
 
   const links = (
     <>
@@ -93,15 +98,15 @@ const Navbar = () => {
           </Link>
 
           <div className="hidden lg:flex">
-            <ul className="menu menu-horizontal font-bold text-sm font-Inter">
+            <ul className="menu menu-horizontal font-bold text-sm font-Gilda">
               {links}
             </ul>
           </div>
 
-          <div className="dropdown lg:hidden">
+          <div className="font-Gilda dropdown lg:hidden">
             <button
-              // onClick={toggleDropdown}
-              className="btn btn-outline btn-warning"
+              onClick={toggleDropdown}
+              className="btn btn-outline btn-primary"
               aria-label="Toggle Menu"
             >
               <svg
@@ -119,6 +124,21 @@ const Navbar = () => {
                 />
               </svg>
             </button>
+            {dropdownOpen && (
+              <ul className="menu dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-10">
+                <li className="font-bold italic text-xl my-2 mx-auto tracking-tight relative group">
+                  <span className="absolute inset-0 transition-opacity duration-300 mb-5"></span>
+                  <Link
+                    to={"/"}
+                    className="flex gap-0 font-Gilda relative text-gray-500 group-hover:text-white transition-colors duration-300"
+                  >
+                     <span className="text-yellow-600">B</span>ook
+                     <span className="text-red-600">B</span>ridge
+                  </Link>
+                </li>
+                <div className="font-semibold font-Inter">{links}</div>
+              </ul>
+            )}
           </div>
         </div>
 
