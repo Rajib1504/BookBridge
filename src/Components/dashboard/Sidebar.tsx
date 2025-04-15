@@ -1,7 +1,7 @@
 import { BiLogOut } from "react-icons/bi";
 import {
   FaBook,
-  FaChartBar,
+  // FaChartBar,
   FaHome,
   FaQuestion,
   FaTimes,
@@ -27,11 +27,11 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar }) => {
       icon: <FaUsers />,
       path: "manage-users",
     },
-    {
-      name: "Traffic Analytics",
-      icon: <FaChartBar />,
-      path: "traffic",
-    },
+    // {
+    //   name: "Traffic Analytics",
+    //   icon: <FaChartBar />,
+    //   path: "traffic",
+    // },
     { name: "Profile", icon: <FaUser />, path: "profile" },
     {
       name: "Book Status",
@@ -73,7 +73,7 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar }) => {
                 className="flex items-center px-4 py-1 font-Inter rounded-md transition"
               >
                 <span className="text-lg mr-3">{item.icon}</span>
-                <span className="font-medium">{item.name}</span>
+                <span className="">{item.name}</span>
               </NavLink>
             </li>
           ))}
@@ -90,7 +90,7 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar }) => {
               <span className="text-lg mr-3">
                 <FaHome />
               </span>
-              <span className="font-medium font-Inter">Back to Home</span>
+              <span className=" font-Inter">Back to Home</span>
             </Link>
           </li>
           <li
@@ -100,7 +100,7 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar }) => {
             <span className="text-lg mr-3">
               <BiLogOut />
             </span>
-            <span className="font-medium font-Inter">Logout</span>
+            <span className=" font-Inter">Logout</span>
           </li>
         </ul>
       </nav>

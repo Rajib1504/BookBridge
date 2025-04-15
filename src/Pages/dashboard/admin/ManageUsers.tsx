@@ -8,7 +8,7 @@ interface User {
   _id: number;
   name: string;
   email: string;
-  phone: string;
+  // phone: string;
   profile: string;
   userStatus: null | "blocked";
 }
@@ -133,7 +133,7 @@ const ManageUsers: React.FC = () => {
               <th>Image</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Phone</th>
+              {/* <th>Phone</th> */}
               <th>Action</th>
             </tr>
           </thead>
@@ -153,7 +153,7 @@ const ManageUsers: React.FC = () => {
                 </td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.phone}</td>
+                {/* <td>{user.phone}</td> */}
                 <td className="flex gap-2">
                   <button
                     className={`btn btn-sm ${

@@ -11,7 +11,7 @@ interface Book {
   postAt: string;
 }
 
-const AllBooks = () => {
+const BookStatus = () => {
 
 
   const axiosSecure = useAxiosSecure();
@@ -71,4 +71,4 @@ const AllBooks = () => {
   );
 };
 
-export default AllBooks;
+export default BookStatus;

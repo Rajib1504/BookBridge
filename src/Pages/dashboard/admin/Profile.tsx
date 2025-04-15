@@ -1,6 +1,14 @@
+// @ts-nocheck
+import { useContext } from "react"
+import { AuthContext } from "../../Provider/AuthProvider"
 
 
 const Profile = () => {
+
+const {user} = useContext(AuthContext);
+console.log(user?.photoURL);
+
+
   return (
     <div className='font-Inter'>
             <div>
@@ -13,15 +21,15 @@ const Profile = () => {
                     {/* Avatar Section */}
                     <div className="avatar">
                         <div className="w-24 rounded-full">
-                            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            <img src={user?.photoURL} />
                         </div>
                     </div>
 
                     {/* Name and Other Text */}
                     <div className='space-y-1'>
-                        <h2 className='font-semibold font-Gilda'>Audrey J. Shaw</h2>
-                        <h5 className='font-Inter text-sm'>Basic User</h5>
-                        <h6 className='font-Inter text-sm'>New York, United States</h6>
+                        <h2 className='font-semibold font-Gilda'>{user?.displayName}</h2>
+                        <h5 className='font-Inter text-sm'>Admin</h5>
+                        {/* <h6 className='font-Inter text-sm'>New York, United States</h6> */}
                     </div>
                 </div>
 
@@ -33,38 +41,37 @@ const Profile = () => {
                     {/* Personal Information Details */}
                     <div className='grid grid-cols-3'>
                         <div className='mt-4'>
-                            <h5 className='text-gray-500'>First Name</h5>
-                            <h5 className=''>Audrey</h5>
+                            <h5 className='text-gray-500'> Name</h5>
+                            <h5 className=''>{user?.displayName}</h5>
                         </div>
-                        <div className='mt-4'>
+                        {/* <div className='mt-4'>
                             <h5 className='text-gray-500'>Last Name</h5>
                             <h5 className=''>J. Shaw</h5>
-                        </div>
-                        <div className='mt-4'>
+                        </div> */}
+                        {/* <div className='mt-4'>
                             <h5 className='text-gray-500'>Date of Birth</h5>
                             <h5 className=''>J. Shaw</h5>
-                        </div>
-                        <div className='mt-4'>
+                        </div> */}
+                        {/* <div className='mt-4'>
                             <h5 className='text-gray-500'>Phone Number</h5>
                             <h5 className=''>+1 511 468 4684</h5>
-                        </div>
+                        </div> */}
                         <div className='mt-4'>
                             <h5 className='text-gray-500'>Email</h5>
-                            <h5 className=''>contact@aundry.com</h5>
+                            <h5 className=''>{user?.email}</h5>
                         </div>
                         <div className='mt-4'>
                             <h5 className='text-gray-500'>Role</h5>
-                            <h5 className=''>User</h5>
+                            <h5 className=''>Admin</h5>
                         </div>
                     </div>
                 </div>
 
 
-                <div className='bg-base-100 py-8 px-10 rounded-xl'>
+                {/* <div className='bg-base-100 py-8 px-10 rounded-xl'>
                     <div className='border-b-2 border-base-300'>
                         <h2 className='pb-2 font-Gilda text-lg'>Address</h2>
                     </div>
-                    {/* Address Information */}
                     <div className='grid grid-cols-3'>
                         <div className='mt-4'>
                             <h5 className='text-gray-500'>Country</h5>
@@ -79,7 +86,7 @@ const Profile = () => {
                             <h5 className=''>15005</h5>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
             </div>
         </div>
