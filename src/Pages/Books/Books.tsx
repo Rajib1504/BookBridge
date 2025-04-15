@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hooks/axiosPublic";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import FilterArea from "../../Components/FilterArea/FilterArea";
 import { FaFilter } from "react-icons/fa";
 import Spinner from "../../Components/spinner/Spinner";
@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import BestSellerCard from "../../Components/BestSellerCard";
 import { FaRegRectangleXmark } from "react-icons/fa6";
 import { GoSortAsc } from "react-icons/go";
+import Swal from "sweetalert2";
 
 const Books = () => {
   type Books = {
@@ -166,6 +167,28 @@ const Books = () => {
       setCurrentPage(currentPage + 1);
     }
   };
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const status = query.get("status");
+    if (status === "failed") {
+      Swal.fire({
+        icon: "error",
+        title: "Payment Failed!",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+    } else if (status === "cancel") {
+      Swal.fire({
+        icon: "error",
+        title: "Payment Canceled!",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+    }
+  }, [location]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 my-20 font-Inter">
