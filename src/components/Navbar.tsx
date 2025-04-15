@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import userImage from "../assets/user.webp";
 // import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
@@ -16,8 +16,9 @@ const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const profileDropdownRef = useRef<HTMLDivElement>(null);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
-  const axiiospublic = useAxiosPublic()
-  
+  const axiiospublic = useAxiosPublic();
+  const navigate = useNavigate();
+
   // const [theme, setTheme] = useState<"light" | "dark">(() => {
   //   // Get the theme from localStorage or default to 'light'
   //   return (localStorage.getItem("theme") as "light" | "dark") || "light";
@@ -37,10 +38,10 @@ const Navbar = () => {
   };
 
   const notificationCount = 3; // Example for notification count
-  const cartCount = 2; // Example for cart count
+  // const cartCount = 2;
+  // Example for cart count
 
   const { cartCount } = useCartCount();
-
 
   const links = (
     <>
@@ -156,46 +157,7 @@ const Navbar = () => {
             )}
           </button>
 
-          {/* Cart icon */}
-
-
-          <div className="drawer drawer-end z-20">
-            <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content h-6">
-              {/* Cart Icon as Drawer Trigger */}
-              <label
-                htmlFor="cart-drawer"
-                className="relative text-2xl cursor-pointer"
-              >
-                <FaCartShopping />
-                {cartCount >= 0 && (
-                  <span className="absolute -top-2 left-3 text-xs font-semibold text-white bg-blue-500 rounded-full w-5 h-5 flex items-center justify-center">
-                    {cartCount}
-                  </span>
-                )}
-              </label>
-            </div>
-            <div className="drawer-side">
-              <label
-                htmlFor="cart-drawer"
-                aria-label="close sidebar"
-                className="drawer-overlay"
-              ></label>
-              <ul className="menu bg-base-200 text-base-content min-h-full w-96 p-4">
-                {/* Cart Sidebar Content */}
-                {/* <li>
-                  <a>Your Cart Item 1</a>
-                </li>
-                <li>
-                  <a>Your Cart Item 2</a>
-                </li> */}
-                <Cart />
-                {/* Add more items or components as needed */}
-              </ul>
-            </div>
-          </div>
-
-          {/* cart details end */}
+          {/* cart details start */}
 
           <div className="drawer drawer-end z-20">
             <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
@@ -220,15 +182,7 @@ const Navbar = () => {
                 className="drawer-overlay"
               ></label>
               <ul className="menu bg-base-200 text-base-content min-h-full w-96 p-4">
-                {/* Cart Sidebar Content */}
-                {/* <li>
-                  <a>Your Cart Item 1</a>
-                </li>
-                <li>
-                  <a>Your Cart Item 2</a>
-                </li> */}
                 <Cart />
-                {/* Add more items or components as needed */}
               </ul>
             </div>
           </div>
@@ -259,25 +213,18 @@ const Navbar = () => {
               </div>
             </button>
 
-
-
-            {/* {profileDropdownOpen && ( */}
-            <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-              {/* Username (non-clickable) */}
-              <li>Profile</li>
-              <Link to={"/login"}>Login</Link>
-
-                    className="justify-between text-base-content font-semibold"
-                  >
-                    {user?.email ? user.displayName : ""}
-                  </div>
+            {profileDropdownOpen && (
+              <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                {user?.email && (
+                  <li className="text-sm font-semibold text-center pointer-events-none">
+                    {user.displayName}
+                  </li>
+                )}
+                <li>
+                  <Link to="/dashboard/admin/profile">Profile</Link>
                 </li>
                 <li>
-                  <Link to={"/dashboard/admin/profile"}>Profile</Link>
-                </li>
-
-                <li>
-                  {user && user?.email ? (
+                  {user?.email ? (
                     <button
                       onClick={handleLogout}
                       className="text-error font-semibold"
