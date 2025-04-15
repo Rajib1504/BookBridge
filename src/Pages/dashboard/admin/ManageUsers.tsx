@@ -2,7 +2,7 @@ import React from "react";
 import { FaBan, FaTrash } from "react-icons/fa";
 import useAxiosSecure from "../../../Hooks/axiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 interface User {
   _id: number;
@@ -14,19 +14,19 @@ interface User {
 }
 
 const ManageUsers: React.FC = () => {
-
   const axiosSecure = useAxiosSecure();
 
-  const { data: users = [], isLoading, refetch } = useQuery<User[]>({
+  const {
+    data: users = [],
+    isLoading,
+    refetch,
+  } = useQuery<User[]>({
     queryKey: ["users"],
     queryFn: async () => {
       const { data } = await axiosSecure("/all/users");
       return data;
     },
   });
-
-
-
 
   // Fake users data
   // const users: User[] = [
@@ -61,35 +61,35 @@ const ManageUsers: React.FC = () => {
     try {
       //confirmation dialog
       const result = await Swal.fire({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You're about to change this user's status!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, proceed!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, proceed!",
       });
-  
+
       if (result.isConfirmed) {
         const res = await axiosSecure.patch(`/update-status/user/${email}`);
-        
+
         if (res.data.modifiedCount) {
           await Swal.fire({
-            title: 'Success!',
-            text: 'User status updated successfully',
-            icon: 'success',
-            confirmButtonText: 'OK',
-            showCancelButton: false
+            title: "Success!",
+            text: "User status updated successfully",
+            icon: "success",
+            confirmButtonText: "OK",
+            showCancelButton: false,
           });
           refetch();
-        } 
+        }
       }
     } catch (error: any) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       await Swal.fire({
-        title: 'Error!',
-        text: error.response?.data?.message || 'Failed to update user status',
-        icon: 'error'
+        title: "Error!",
+        text: error.response?.data?.message || "Failed to update user status",
+        icon: "error",
       });
     }
   };
@@ -103,7 +103,7 @@ const ManageUsers: React.FC = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
+    }).then(async (result: any) => {
       if (result.isConfirmed) {
         try {
           await axiosSecure.delete(`/delete/user/${email}`);
@@ -157,11 +157,14 @@ const ManageUsers: React.FC = () => {
                 <td className="flex gap-2">
                   <button
                     className={`btn btn-sm ${
-                      user.userStatus === "blocked" ? "btn-success" : "btn-warning"
+                      user.userStatus === "blocked"
+                        ? "btn-success"
+                        : "btn-warning"
                     } text-white`}
                     onClick={() => handleBlock(user.email)}
                   >
-                    <FaBan /> {user.userStatus === "blocked" ? "unblock" : "block"}
+                    <FaBan />{" "}
+                    {user.userStatus === "blocked" ? "unblock" : "block"}
                   </button>
                   <button
                     className="btn btn-sm btn-error text-white"

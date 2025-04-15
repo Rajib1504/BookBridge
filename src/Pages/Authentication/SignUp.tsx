@@ -9,8 +9,8 @@ import Social from "./Social";
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
-  const {Register,updateUserProfile}=useAuth()
-  const navigate = useNavigate()
+  const { Register, updateUserProfile } = useAuth();
+  const navigate = useNavigate();
 
   type FormData = {
     email: string;
@@ -28,34 +28,32 @@ const SignUp = () => {
   const onSubmit = async (data: FormData) => {
     const { email, password, FirstName, LastName, profile } = data;
     const fullName = `${FirstName} ${LastName}`;
-// console.log(data)
+    // console.log(data)
     Register(email, password)
-      .then((res) => {
+      .then((res: any) => {
         const user = res.user;
         // console.log(user)
         updateUserProfile(fullName, profile)
           .then(() => {
-            const userInfo = { name: fullName, email, profile,role:'user' };
+            const userInfo = { name: fullName, email, profile, role: "user" };
             axiosPublic.post("/users", userInfo).then((res) => {
               if (res.data.insertedId) {
-                console.log(user)
-                toast.success(`Sign Up Successful: ${user.email}`)
+                console.log(user);
+                toast.success(`Sign Up Successful: ${user.email}`);
                 navigate("/");
                 reset();
               }
             });
           })
-          .catch((err) => {
+          .catch((err: any) => {
             toast.error("Profile update failed:", err.message);
           });
       })
-      .catch((error) => {
+      .catch((error: any) => {
         console.error(error);
-        toast.error(`${error.message}`)
+        toast.error(`${error.message}`);
       });
   };
-
-
 
   return (
     <section className="flex justify-center items-center min-h-screen  flex-col bg-base-200 ">
@@ -80,12 +78,11 @@ const SignUp = () => {
           >
             <div className="flex gap-4">
               <input
-                
                 placeholder="First Name"
                 className="w-1/2  px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
                 {...register("FirstName", { required: "Name is Required" })}
-                />
-                {/* {errors.FirstName && <p className="text-red-500">{errors.FirstName.message}</p>} */}
+              />
+              {/* {errors.FirstName && <p className="text-red-500">{errors.FirstName.message}</p>} */}
               <input
                 {...register("LastName", { required: "Last name is Required" })}
                 placeholder="Last Name"
@@ -98,41 +95,45 @@ const SignUp = () => {
               placeholder="Email Address"
               className="  px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
             />
-            {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+            {errors.email && (
+              <p className="text-red-500">{errors.email.message}</p>
+            )}
             <input
-            type="password"
-            {...register("password", {
-              required: true,
-              minLength: 6,
-              maxLength: 12,
-              pattern:
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-            })}
+              type="password"
+              {...register("password", {
+                required: true,
+                minLength: 6,
+                maxLength: 12,
+                pattern:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+              })}
               placeholder="Password"
               className="  px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
             />
             {errors.password?.type === "required" && (
-                    <p className="text-red-500">Password is required</p>
-                  )}
-                  {errors.password?.type === "minLength" && (
-                    <p className="text-red-500">Password must be lest 6</p>
-                  )}
-                  {errors.password?.type === "pattern" && (
-                    <p className="text-red-500">
-                      Password must contain at least one special charecter,
-                      least 8 characters,one lowercase,one uppercase ,one digit
-                    </p>
-                  )}
+              <p className="text-red-500">Password is required</p>
+            )}
+            {errors.password?.type === "minLength" && (
+              <p className="text-red-500">Password must be lest 6</p>
+            )}
+            {errors.password?.type === "pattern" && (
+              <p className="text-red-500">
+                Password must contain at least one special charecter, least 8
+                characters,one lowercase,one uppercase ,one digit
+              </p>
+            )}
 
             <input
-            type="url"
+              type="url"
               {...register("profile", {
                 required: "profile image is Required",
               })}
               placeholder="Profile Image URL"
               className="  px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
             />
-            {errors.profile && <p className="text-red-500">{errors.profile.message}</p>}
+            {errors.profile && (
+              <p className="text-red-500">{errors.profile.message}</p>
+            )}
             <button
               type="submit"
               className="mt-3   bg-[#FFB237] text-white py-2 rounded-lg hover:bg-[#d62928] transition font-semibold"
@@ -142,7 +143,7 @@ const SignUp = () => {
           </form>
           <div className="my-6 text-gray-600">Or Sign Up With</div>
           <div className="flex justify-center items-center gap-6">
-            <Social/>
+            <Social />
           </div>
         </aside>
       </div>

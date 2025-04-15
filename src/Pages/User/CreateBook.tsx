@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useForm, SubmitHandler } from "react-hook-form";
 import useAxiosSecure from "../../Hooks/axiosSecure";
 import Swal from "sweetalert2";
@@ -27,7 +28,9 @@ export default function CreateBook() {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const auth = useAuth();
+  const user = auth?.user;
 
   // import from use form
   const {
@@ -47,7 +50,7 @@ export default function CreateBook() {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes",
-    }).then(async (result) => {
+    }).then(async (result: any) => {
       if (result.isConfirmed) {
         // cover image upload to server
         const coverImage = { image: data.coverImage[0] };
@@ -86,7 +89,7 @@ export default function CreateBook() {
           // then send book info to backend
           axiosSecure
             .post("/api/books", bookInfo)
-            .then((res) => {
+            .then((res: any) => {
               if (res.data.insertedId) {
                 Swal.fire({
                   title: "Done!",

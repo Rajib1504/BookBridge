@@ -1,3 +1,4 @@
+// @ts-nocheck
 import useAxiosSecure from "./axiosSecure";
 import useAuth from "./useAuth";
 import useCart from "./useCart";
@@ -8,7 +9,9 @@ const useAddToCart = () => {
   const axiosSecure = useAxiosSecure();
   const { cartsInfoRefetch } = useCart();
   const { cartCountRefetch } = useCartCount();
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const auth = useAuth();
+  const user = auth?.user;
   const handleAddtoCart = (bookId: number, price: number) => {
     const cartInfo = {
       bookId: bookId,
@@ -19,7 +22,7 @@ const useAddToCart = () => {
     };
     axiosSecure
       .post("/api/cart", cartInfo)
-      .then((res) => {
+      .then((res: any) => {
         if (res.data.insertedId) {
           cartsInfoRefetch();
           cartCountRefetch();
