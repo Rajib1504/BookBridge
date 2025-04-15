@@ -1,12 +1,23 @@
-import Banner from "../../components/Banner";
-import BestSeller from "../../components/BestSeller";
+
+import Banner from "../../Components/Banner";
+import BestSeller from "../../Components/BestSeller";
+import Discount from "../../Components/Discount";
+import ShopbyBrands from "../../components/ShopbyBrands";
+import ShopByCategory from "../../Components/ShopByCategory";
+import Testimonial from "../../components/Testimonials";
+import TopAuther from "../../Components/TopAuther";
 
 
 const Home = () => {
       return (
             <div>
-                  <Banner></Banner>
-                  <BestSeller></BestSeller>
+                <Banner/>
+                <BestSeller/>
+                <Discount/>
+                <ShopByCategory/>
+                <TopAuther/>
+                <ShopbyBrands></ShopbyBrands>
+                <Testimonial/>              
             </div>
       );
 };

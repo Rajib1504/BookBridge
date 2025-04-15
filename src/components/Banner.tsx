@@ -11,7 +11,7 @@ import { Slide, Zoom } from 'react-awesome-reveal';
 import { IoPricetagsOutline } from 'react-icons/io5';
 const Banner = () => {
     return (
-        <>
+        <div className='mt-16'>
             <Swiper
                 pagination={{
                     dynamicBullets: true,
@@ -61,7 +61,7 @@ const Banner = () => {
                                     </div>
                                     <Slide cascade>
                                         <h2 className='text-5xl font-Gilda leading-snug'>The Story About <br /> Ms. Rooster</h2>
-                                        <p className="uppercase text-[#d62928] text-xl font-bold tracking-widest">40% Off</p>
+                                        <p className="uppercase   text-xl font-bold tracking-widest">40% Off</p>
                                     </Slide>
                                     <Zoom delay={1000}>
                                         <button className="mt-6 text-white uppercase py-6 tracking-widest text-xs border-0 btn btn-wide bg-[#d62928] hover:bg-[#FFB237]">Shop Now</button>
@@ -113,7 +113,7 @@ const Banner = () => {
 
             </Swiper>
 
-        </>
+        </div>
     );
 };
 
