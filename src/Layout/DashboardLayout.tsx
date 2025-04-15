@@ -32,7 +32,7 @@ const DashboardLayout = () => {
           >
             <FaBars />
           </button>
-          <h1 className="ml-4 text-lg font-bold">Dashboard</h1>
+          <h1 className="ml-4 text-2xl">Dashboard</h1>
         </div>
 
         {/* Content Area */}

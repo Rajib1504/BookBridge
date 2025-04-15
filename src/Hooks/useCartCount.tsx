@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./axiosSecure";
 import useAuth from "./useAuth";

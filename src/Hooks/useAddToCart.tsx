@@ -1,4 +1,3 @@
-import React from "react";
 import useAxiosSecure from "./axiosSecure";
 import useAuth from "./useAuth";
 import useCart from "./useCart";
@@ -10,14 +9,14 @@ const useAddToCart = () => {
   const { cartsInfoRefetch } = useCart();
   const { cartCountRefetch } = useCartCount();
   const { user } = useAuth();
-  const handleAddtoCart = (bookId: number) => {
+  const handleAddtoCart = (bookId: number, price: number) => {
     const cartInfo = {
       bookId: bookId,
       quantity: 1,
       userEmail: user?.email,
+      price: price,
       status: "inCart",
     };
-    console.log(cartInfo);
     axiosSecure
       .post("/api/cart", cartInfo)
       .then((res) => {
@@ -31,7 +30,7 @@ const useAddToCart = () => {
           toast.success("Updated cart quantity.");
         }
       })
-      .catch((err) => console.log(err));
+      .catch(() => toast.error("Something went wrong. Try again."));
   };
   return handleAddtoCart;
 };
