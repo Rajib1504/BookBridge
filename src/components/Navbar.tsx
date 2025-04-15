@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { Link, NavLink } from "react-router-dom";
 import userImage from "../assets/user.webp";
-// import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { PiBellSimpleRinging } from "react-icons/pi";
 import { FaCartShopping } from "react-icons/fa6";
@@ -117,6 +116,7 @@ const Navbar = () => {
                 />
               </svg>
             </button>
+
           </div>
         </div>
 

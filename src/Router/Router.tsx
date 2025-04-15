@@ -90,8 +90,11 @@ const Router = createBrowserRouter([
         path: "profile",
         element: <Profile />,
       },
-    
-    ]
+      {
+        path: "book-status",
+        element: <BookStatus />,
+      },
+    ],
   },
 
   {
