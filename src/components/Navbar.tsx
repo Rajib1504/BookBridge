@@ -210,7 +210,7 @@ const Navbar = () => {
               </div>
             </button>
             {profileDropdownOpen && (
-              <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              <ul className="font-Inter menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                 {/* Username (non-clickable) */}
                 <li>
                   <div
