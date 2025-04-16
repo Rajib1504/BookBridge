@@ -7,6 +7,7 @@ import { LuDollarSign } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import useAddToCart from "../Hooks/useAddToCart";
 
+
 type Books = {
   availability: string;
   title: string;
