@@ -68,7 +68,8 @@ const Cart = () => {
     };
     axiosSecure
       .post("/api/rent", checkoutInfo)
-      .then((res:any) => {
+      .then((res: any) => {
+        console.log(res.data);
         window.location.replace(res.data.url);
       })
       .catch(() => toast.error("Something went wrong. Try again."));

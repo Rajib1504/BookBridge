@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const MyBooks = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const query = new URLSearchParams(location.search);
@@ -15,8 +16,16 @@ const MyBooks = () => {
         timer: 1500,
         showConfirmButton: false,
       });
+      query.delete("status");
+      navigate(
+        {
+          pathname: location.pathname,
+          search: query.toString(),
+        },
+        { replace: true }
+      );
     }
-  }, [location]);
+  }, [location, navigate]);
   return (
     <div>
       <div>
