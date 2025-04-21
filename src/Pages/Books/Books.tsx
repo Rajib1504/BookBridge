@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hooks/axiosPublic";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import FilterArea from "../../Components/FilterArea/FilterArea";
 import { FaFilter } from "react-icons/fa";
 import Spinner from "../../Components/spinner/Spinner";
@@ -169,6 +169,7 @@ const Books = () => {
   };
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const query = new URLSearchParams(location.search);
@@ -180,6 +181,14 @@ const Books = () => {
         timer: 1500,
         showConfirmButton: false,
       });
+      query.delete("status");
+      navigate(
+        {
+          pathname: location.pathname,
+          search: query.toString(),
+        },
+        { replace: true }
+      );
     } else if (status === "cancel") {
       Swal.fire({
         icon: "error",
@@ -187,6 +196,14 @@ const Books = () => {
         timer: 1500,
         showConfirmButton: false,
       });
+      query.delete("status");
+      navigate(
+        {
+          pathname: location.pathname,
+          search: query.toString(),
+        },
+        { replace: true }
+      );
     }
   }, [location]);
 
